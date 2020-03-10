@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="Chalky Doge">
   <meta name="keywords" content="">
-  <title>LeetCode-18 - Hexo</title>
+  <title>Tags - Breadth First Search - Hexo</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -42,7 +42,7 @@
 
 
 <body>
-  <header style="height: 70vh;">
+  <header style="height: 80vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -120,40 +120,6 @@
             </span>
 
             
-              
-                <p class="mt-3 post-meta">
-                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-                  Tuesday, March 10th 2020, 1:49 pm
-                </p>
-              
-
-              <p class="mt-1">
-                
-                  
-                  <span class="post-meta">
-                    <i class="far fa-chart-bar"></i>
-                    483 字
-                  </span>
-                
-
-                
-                  
-                  <span class="post-meta">
-                      <i class="far fa-clock"></i>
-                      2 分钟
-                  </span>
-                
-
-                
-                  <!-- 不蒜子统计文章PV -->
-                  
-                  <span id="busuanzi_container_page_pv" class="post-meta" style="display: none">
-                    <i class="far fa-eye" aria-hidden="true"></i>
-                    <span id="busuanzi_value_page_pv"></span> 次
-                  </span>
-                
-              </p>
-            
           </div>
 
           
@@ -164,118 +130,37 @@
 
   <main>
     
+      <div class="container nopadding-md">
+        <div class="py-5 z-depth-3" id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<div class="list-group">
+<!--  <p class="h4">1 posts in total.</p>-->
+  <hr>
+  
+    
       
+      <p class="h5">2020</p>
+    
+    <a href="/2020/03/10/LeetCode-207/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">LeetCode-207</span>
+      <span style="float: right;">03-10</span>
+    </a>
+  
+</div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5 z-depth-3" id="board">
-          <div class="post-content mx-auto" id="post">
-            
-            <div class="markdown-body">
-              <p>LeetCode N数之和问题-ver 3.0</p>
-<p>  四数之和问题：给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。</p>
-<p>  注意：答案中不可以包含重复的四元组。</p>
-<p>一点问题：如何避免重复的数字反复的加入结果集合？<br>最直接的想法是先暴力枚举出所有的可能组合，再用set去重，时间复杂度O(N^4)-&gt;O(N^3)<br>使用target-nums[i]改进循环，时间复杂度可下降至O(N^3)<br>如何去重？注意两个内部的while循环，两个if语句</p>
-<pre><code>if(i&gt;0&amp;&amp;nums[i]&#x3D;&#x3D;nums[i-1])</code></pre> 
 
-<ol>
-<li>不能颠倒两个条件的顺序</li>
-<li>从i=1开始才有可能执行该语句，从而跳过前面的k-&gt;i中的重复元素</li>
-</ol>
-<pre><code>while(k&lt;l&amp;&amp;nums[k]&#x3D;&#x3D;nums[k+1])  ++k;
-while(k&lt;l&amp;&amp;nums[l]&#x3D;&#x3D;nums[l-1])  --l;
-++k;--l;&#x2F;&#x2F;注意这里，判断的边界需要再加1&#x2F;减1</code></pre>
-<h3 id><a href="#" class="headerlink" title></a></h3><h3 id="以下是一种解法："><a href="#以下是一种解法：" class="headerlink" title="以下是一种解法："></a>以下是一种解法：</h3><h3 id="-1"><a href="#-1" class="headerlink" title></a></h3><pre><code>class Solution {
-public:
-    vector&lt;vector&lt;int&gt;&gt; fourSum(vector&lt;int&gt;&amp; nums, int target) {
-        vector&lt;vector&lt;int&gt;&gt; res;
-        if(nums.empty())
-            return {};
-        
-        sort(nums.begin(),nums.end());
-        int n&#x3D;nums.size();
 
-        for(int i&#x3D;0;i&lt;n;i++){
-            if(i&gt;0&amp;&amp;nums[i]&#x3D;&#x3D;nums[i-1])  {
-                continue;                
-            }  
-            int threeSum&#x3D;target-nums[i];
-            for(int j&#x3D;i+1;j&lt;n;j++){
-                if(j&gt;i+1&amp;&amp;nums[j]&#x3D;&#x3D;nums[j-1]){
-                    continue;                    
-                }    
-                int twoSum&#x3D;threeSum-nums[j];
-                int k&#x3D;j+1;
-                int l&#x3D;n-1;
-                while(k&lt;l){
-                    if(nums[k]+nums[l]&#x3D;&#x3D;twoSum){
-                        res.push_back({nums[i],nums[j],nums[k],nums[l]});
-                        while(k&lt;l&amp;&amp;nums[k]&#x3D;&#x3D;nums[k+1]){
-                            ++k;
-                        }
-                        while(k&lt;l&amp;&amp;nums[l]&#x3D;&#x3D;nums[l-1]){
-                            --l;
-                        }
-                        ++k;--l;  
-                    }
-                    else if(nums[k]+nums[l]&gt;twoSum){
-                        --l;                        
-                    }
-                    else{
-                        ++k;                        
-                    }    
-                }
-            }
-        }
-        return res;
-    }
-};</code></pre>
-
+              </div>
             </div>
-            <hr>
-            <div>
-              <p>
-                
-                
-                  <span>
-                <i class="iconfont icon-tag"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/Two-pointers/">Two pointers</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Array/">Array</a>
-                    
-                  </span>
-                
-              </p>
-              
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
-              
-            </div>
-
-            
           </div>
         </div>
       </div>
-    </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc-start"></div>
-<div id="toc">
-  <p class="h5"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
-  <div id="tocbot"></div>
-</div>
-
-      </div>
-    
-  </div>
-</div>
-
-<!-- Custom -->
-
-
     
   </main>
 
@@ -357,57 +242,6 @@ public:
 
 
 
-  
-  <script  src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      var navHeight = $('#navbar').height();
-      var post = $('#post');
-      var toc = $('#toc');
-      var tocLimMax = post.offset().top + post.height() - navHeight;
-
-      $(window).scroll(function () {
-        var tocLimMin = $('#toc-start').offset().top - navHeight;
-        var scroH = document.body.scrollTop + document.documentElement.scrollTop;
-
-        if (tocLimMin <= scroH && scroH <= tocLimMax) {
-          toc.css({
-            'display': 'block',
-            'position': 'fixed',
-            'top': navHeight,
-          });
-        } else if (scroH <= tocLimMin) {
-          toc.css({
-            'position': '',
-            'top': '',
-          });
-        } else if (scroH > tocLimMax) {
-          toc.css('display', 'none');
-        }
-      });
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '.post-content',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        scrollSmooth: true,
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc > p').css('visibility', 'visible');
-      }
-      var offset = $('#board-ctn').css('margin-right')
-      $('#toc-ctn').css({
-        'right': offset
-      })
-    });
-  </script>
-
-
-
 
 
 
@@ -436,7 +270,7 @@ public:
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "LeetCode-18&nbsp;",
+        "Tag - Breadth First Search&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
