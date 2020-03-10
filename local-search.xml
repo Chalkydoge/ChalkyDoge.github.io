@@ -11,18 +11,6 @@
     <content type="html"><![CDATA[<blockquote><p>B-树的操作：插入与删除</p></blockquote><pre><code>template&lt;typename T&gt; bool BTree&lt;T&gt;::remove(T const&amp; e){    BTNode&lt;T&gt;* v&#x3D;search(e);    if(!v)  return false;    Rank r&#x3D;v-&gt;key.search(e);    if(v-&gt;child[0]){        BTNode&lt;T&gt;* u&#x3D;v-&gt;child[r+1];        while(u-&gt;child[0])  u&#x3D;u-&gt;child[0];        v-&gt;key[r]&#x3D;u-&gt;key[0];        v-&gt;key.remove(r);        v-&gt;child.remove(r+1);        _size--;    }       }</code></pre><h3 id="AAAAAAAAA"><a href="#AAAAAAAAA" class="headerlink" title="AAAAAAAAA"></a>AAAAAAAAA</h3><h2 id="AAAAABBBBAAAA"><a href="#AAAAABBBBAAAA" class="headerlink" title="AAAAABBBBAAAA"></a>AAAAABBBBAAAA</h2>]]></content>
     
     
-    <categories>
-      
-      <category>algorithms</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>data structure</tag>
-      
-    </tags>
     
   </entry>
   
