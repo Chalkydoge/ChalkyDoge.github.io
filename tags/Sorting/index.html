@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="Chalky Doge">
   <meta name="keywords" content="">
-  <title>Hexo</title>
+  <title>Tags - Sorting - Hexo</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -42,7 +42,7 @@
 
 
 <body>
-  <header style="height: 100vh;">
+  <header style="height: 80vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -123,10 +123,6 @@
           </div>
 
           
-            <div class="scroll-down-bar">
-              <i class="fas fa-angle-down scroll-down-arrow"></i>
-            </div>
-          
         </div>
       </div>
     </div>
@@ -136,297 +132,27 @@
     
       <div class="container nopadding-md">
         <div class="py-5 z-depth-3" id="board"
-          style=margin-top:0>
+          >
           
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-10 m-auto">
                 
 
-
-  <div class="row mx-auto index-card">
+<div class="list-group">
+<!--  <p class="h4">1 posts in total.</p>-->
+  <hr>
+  
     
+      
+      <p class="h5">2020</p>
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a href="/2020/03/11/Combination/">
-        <p class="h4 index-header">Combination</p>
-      </a>
-
-      <a href="/2020/03/11/Combination/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">215.Combination Sum III先上代码233：
-class Solution {
-public:
-    vector&lt;vector&lt;int&gt;&gt; combinationSum3(int k, int n) {
-        vector&lt;vector&lt;int&gt;&gt; res;
-        vector&lt;int&gt; path;
-        backtrack(n,path,k,res,0);
-        return res;
-    }
-    void backtrack(int n,vector&lt;in</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-11&nbsp;&nbsp;
-        
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/Backtrack/">Backtrack</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a href="/2020/03/11/findKth/">
-        <p class="h4 index-header">findKth</p>
-      </a>
-
-      <a href="/2020/03/11/findKth/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">215.寻找第K大的元素
-class Solution {
-public:
-    int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {
-        int n&#x3D;nums.size();
-        return findKth(nums,0,n-1,k);
-    }
-    int findKth(vector&lt;int&gt; &amp;nums,int left,int right,int k){
-        int index&#x3D;partition(nums,left,right);
-   </div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-11&nbsp;&nbsp;
-        
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/Array/">Array</a>&nbsp;
-          
-            <a href="/tags/Sorting/">Sorting</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a href="/2020/03/10/LeetCode-207/">
-        <p class="h4 index-header">LeetCode-207</p>
-      </a>
-
-      <a href="/2020/03/10/LeetCode-207/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">
-class Solution {
-public:
-    bool canFinish(int numCourses, vector&lt;vector&lt;int&gt;&gt;&amp; prerequisites) {
-        map&lt;int,set&lt;int&gt;&gt; adjacent;
-        vector&lt;int&gt; indegree(numCourses);
-        for(auto&amp; p:prerequisites){
-            adjacent[p[1]].insert(p[0]);
-        </div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-10&nbsp;&nbsp;
-        
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/Graph/">Graph</a>&nbsp;
-          
-            <a href="/tags/Breadth-First-Search/">Breadth First Search</a>&nbsp;
-          
-            <a href="/tags/Depth-First-Search/">Depth First Search</a>&nbsp;
-          
-            <a href="/tags/Topological-Sort/">Topological Sort</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a href="/2020/03/10/LeetCode-84/">
-        <p class="h4 index-header">LeetCode-84</p>
-      </a>
-
-      <a href="/2020/03/10/LeetCode-84/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">
-class Solution {
-public:
-    int largestRectangleArea(vector&lt;int&gt;&amp; heights) {
-        int n&#x3D;heights.size();
-        int m&#x3D;0;
-        for(int i&#x3D;0;i&lt;n;i++){
-            int k&#x3D;INT_MAX;
-            for(int j&#x3D;i;j&lt;n;j++){
-                k&#x3D;min(k,heights[j]);
+    <a href="/2020/03/11/findKth/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">findKth</span>
+      <span style="float: right;">03-11</span>
+    </a>
+  
 </div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-10&nbsp;&nbsp;
-        
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/Array/">Array</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a href="/2020/03/10/LeetCode-18/">
-        <p class="h4 index-header">LeetCode-18</p>
-      </a>
-
-      <a href="/2020/03/10/LeetCode-18/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">LeetCode N数之和问题-ver 3.0
-  四数之和问题：给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。
-  注意：答案中不可以包含重复的四元组。
-一点问题：如何避免重复的数字反复的加入结果集合？最直接的想法是先暴力枚举出所有的可能组合，再用set去重，时间复杂度O(N^4)-&gt;O(N^3)使用target-nums[i]改进循环，时间复杂度可下降至O(N^3)如何去重？注意两个内部的while循环，两个</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-10&nbsp;&nbsp;
-        
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/Two-pointers/">Two pointers</a>&nbsp;
-          
-            <a href="/tags/Array/">Array</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a href="/2020/03/09/B-Tree/">
-        <p class="h4 index-header">B-Tree dynamtic procedures/remove&amp;insert</p>
-      </a>
-
-      <a href="/2020/03/09/B-Tree/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">B-树的操作：插入与删除
-
-
-template&lt;typename T&gt; bool BTree&lt;T&gt;::remove(T const&amp; e){
-    BTNode&lt;T&gt;* v&#x3D;search(e);
-    if(!v)  return false;
-    Rank r&#x3D;v-&gt;key.search(e);
-    if(v-&gt;child[0]){
-        BTNode&lt;T&gt;* u&#x3D;v-&gt;child[r+1];
-        while(u-&gt;child[0])  u&#x3D</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-09&nbsp;&nbsp;
-        
-        
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a href="/2020/03/09/hello-world/">
-        <p class="h4 index-header">Hello World</p>
-      </a>
-
-      <a href="/2020/03/09/hello-world/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartHello!Create a new post$ hexo new &quot;My New Post&quot;
-More info: Writing
-Run server$ hexo </div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-09&nbsp;&nbsp;
-        
-        
-        
-      </div>
-    </div>
-  </div>
-
-
 
 
 
@@ -544,7 +270,7 @@ Run server$ hexo </div>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "&nbsp;",
+        "Tag - Sorting&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

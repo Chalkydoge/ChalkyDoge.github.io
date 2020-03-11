@@ -4,11 +4,51 @@
   
   
   <entry>
+    <title>Combination</title>
+    <link href="/2020/03/11/Combination/"/>
+    <url>/2020/03/11/Combination/</url>
+    
+    <content type="html"><![CDATA[<h3 id="215-Combination-Sum-III"><a href="#215-Combination-Sum-III" class="headerlink" title="215.Combination Sum III"></a>215.Combination Sum III</h3><p>先上代码233：</p><pre><code>class Solution {public:    vector&lt;vector&lt;int&gt;&gt; combinationSum3(int k, int n) {        vector&lt;vector&lt;int&gt;&gt; res;        vector&lt;int&gt; path;        backtrack(n,path,k,res,0);        return res;    }    void backtrack(int n,vector&lt;int&gt;&amp; path,int k,vector&lt;vector&lt;int&gt;&gt;&amp; res,int start){        if(n&lt;0)            return;        if(k&#x3D;&#x3D;0){            if(n&#x3D;&#x3D;0)                res.push_back(path);            return;        }        for(int i&#x3D;start;i&lt;9;i++){            path.push_back(i+1);            backtrack(n-(i+1),path,k-1,res,i+1);            path.pop_back();        }    }};</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Backtrack</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>findKth</title>
+    <link href="/2020/03/11/findKth/"/>
+    <url>/2020/03/11/findKth/</url>
+    
+    <content type="html"><![CDATA[<h3 id="215-寻找第K大的元素"><a href="#215-寻找第K大的元素" class="headerlink" title="215.寻找第K大的元素"></a>215.寻找第K大的元素</h3><p><img src="/2020/03/11/findKth/%5CfindKth%5Cfind.png" srcset="/img/loading.gif" alt="txt"></p><pre><code>class Solution {public:    int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {        int n&#x3D;nums.size();        return findKth(nums,0,n-1,k);    }    int findKth(vector&lt;int&gt; &amp;nums,int left,int right,int k){        int index&#x3D;partition(nums,left,right);        if(index+1&#x3D;&#x3D;k)            return nums[index];        else if(index+1&lt;k)            return findKth(nums,index+1,right,k);        else if(index+1&gt;k)            return findKth(nums,left,index-1,k);        else            return -1;    }    int partition(vector&lt;int&gt;&amp; nums,int left,int right){        int pivot&#x3D;rand()%(right-left+1)+left;        swap(nums[left],nums[pivot]);        int temp&#x3D;nums[left];        int i&#x3D;left;        int j&#x3D;left+1;        while(j&lt;&#x3D;right){            if(nums[j]&gt;&#x3D;temp)                swap(nums[j],nums[++i]);            j++;        }        swap(nums[left],nums[i]);        return i;    }};</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Array</tag>
+      
+      <tag>Sorting</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>LeetCode-207</title>
     <link href="/2020/03/10/LeetCode-207/"/>
     <url>/2020/03/10/LeetCode-207/</url>
     
-    <content type="html"><![CDATA[<pre><code>class Solution {public:    bool canFinish(int numCourses, vector&lt;vector&lt;int&gt;&gt;&amp; prerequisites) {        map&lt;int,set&lt;int&gt;&gt; adjacent;        vector&lt;int&gt; indegree(numCourses);        for(auto&amp; p:prerequisites){            adjacent[p[1]].insert(p[0]);            indegree[p[0]]++;        }        queue&lt;int&gt; todo;        for(int i&#x3D;0;i&lt;numCourses;i++){            if(!indegree[i])                todo.push(i);&#x2F;&#x2F;        }        int count&#x3D;0;        while(!todo.empty()){            auto vertex&#x3D;todo.front();            todo.pop();            auto t&#x3D;adjacent[vertex];            for(auto x:t){                --indegree[x];                if(!indegree[x])                        todo.push(x);            }            count++;        }        return count&#x3D;&#x3D;numCourses;    }};</code></pre><pre><code>class Solution {public:    bool canFinish(int numCourses, vector&lt;vector&lt;int&gt;&gt;&amp; prerequisites) {        map&lt;int,set&lt;int&gt;&gt; adjacent;        vector&lt;int&gt; outdegree(numCourses);        for(auto&amp; p:prerequisites){            adjacent[p[0]].insert(p[1]);            outdegree[p[1]]++;        }        stack&lt;int&gt; todo;        for(int i&#x3D;0;i&lt;numCourses;i++){            if(!outdegree[i])                todo.push(i);&#x2F;&#x2F;        }        int count&#x3D;0;        while(!todo.empty()){            auto vertex&#x3D;todo.top();            todo.pop();            auto t&#x3D;adjacent[vertex];            for(auto x:t){                --outdegree[x];                if(!outdegree[x])                        todo.push(x);            }            count++;        }        return count&#x3D;&#x3D;numCourses;    }};</code></pre>]]></content>
+    <content type="html"><![CDATA[<p><img src="/2020/03/10/LeetCode-207/test.png" srcset="/img/loading.gif" alt="207"></p><pre><code>class Solution {public:    bool canFinish(int numCourses, vector&lt;vector&lt;int&gt;&gt;&amp; prerequisites) {        map&lt;int,set&lt;int&gt;&gt; adjacent;        vector&lt;int&gt; indegree(numCourses);        for(auto&amp; p:prerequisites){            adjacent[p[1]].insert(p[0]);            indegree[p[0]]++;        }        queue&lt;int&gt; todo;        for(int i&#x3D;0;i&lt;numCourses;i++){            if(!indegree[i])                todo.push(i);&#x2F;&#x2F;        }        int count&#x3D;0;        while(!todo.empty()){            auto vertex&#x3D;todo.front();            todo.pop();            auto t&#x3D;adjacent[vertex];            for(auto x:t){                --indegree[x];                if(!indegree[x])                        todo.push(x);            }            count++;        }        return count&#x3D;&#x3D;numCourses;    }};</code></pre><pre><code>class Solution {public:    bool canFinish(int numCourses, vector&lt;vector&lt;int&gt;&gt;&amp; prerequisites) {        map&lt;int,set&lt;int&gt;&gt; adjacent;        vector&lt;int&gt; outdegree(numCourses);        for(auto&amp; p:prerequisites){            adjacent[p[0]].insert(p[1]);            outdegree[p[1]]++;        }        stack&lt;int&gt; todo;        for(int i&#x3D;0;i&lt;numCourses;i++){            if(!outdegree[i])                todo.push(i);&#x2F;&#x2F;        }        int count&#x3D;0;        while(!todo.empty()){            auto vertex&#x3D;todo.top();            todo.pop();            auto t&#x3D;adjacent[vertex];            for(auto x:t){                --outdegree[x];                if(!outdegree[x])                        todo.push(x);            }            count++;        }        return count&#x3D;&#x3D;numCourses;    }};</code></pre>]]></content>
     
     
     
