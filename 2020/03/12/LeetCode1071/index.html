@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="Chalky Doge">
   <meta name="keywords" content="">
-  <title>Tags - CodingDoge</title>
+  <title>LeetCode1071 - CodingDoge</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -42,7 +42,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -120,6 +120,40 @@
             </span>
 
             
+              
+                <p class="mt-3 post-meta">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                  Thursday, March 12th 2020, 1:30 pm
+                </p>
+              
+
+              <p class="mt-1">
+                
+                  
+                  <span class="post-meta">
+                    <i class="far fa-chart-bar"></i>
+                    205 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta">
+                      <i class="far fa-clock"></i>
+                      1 分钟
+                  </span>
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  <span id="busuanzi_container_page_pv" class="post-meta" style="display: none">
+                    <i class="far fa-eye" aria-hidden="true"></i>
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>
+                
+              </p>
+            
           </div>
 
           
@@ -130,23 +164,68 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
-<div class="text-center tagcloud">
-  <a href="/tags/Array/" style="font-size: 30px; color: #337ab7">Array</a> <a href="/tags/Backtrack/" style="font-size: 15px; color: #bbe">Backtrack</a> <a href="/tags/Breadth-First-Search/" style="font-size: 15px; color: #bbe">Breadth First Search</a> <a href="/tags/Depth-First-Search/" style="font-size: 15px; color: #bbe">Depth First Search</a> <a href="/tags/Graph/" style="font-size: 15px; color: #bbe">Graph</a> <a href="/tags/Linked-List/" style="font-size: 15px; color: #bbe">Linked List</a> <a href="/tags/Sorting/" style="font-size: 15px; color: #bbe">Sorting</a> <a href="/tags/String/" style="font-size: 15px; color: #bbe">String</a> <a href="/tags/Topological-Sort/" style="font-size: 15px; color: #bbe">Topological Sort</a> <a href="/tags/Two-pointers/" style="font-size: 15px; color: #bbe">Two pointers</a>
-</div>
-              </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5 z-depth-3" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <div class="markdown-body">
+              <p><img src="/2020/03/12/LeetCode1071/LeetCode1071%5Ct.png" srcset="/img/loading.gif" alt="t"></p>
+<blockquote><p>greatest common divisor<br>最大公因数与辗转相除法<br>    gcd(a,b)=gcd(b,a%b)<br>证明：设a=kb+r, r=a%b<br>    设d=gcd(a,b), d|a,d|b;<br>    r=a-kb; r/d=a/d-k*b/d;<br>    所以r/d也是一个整数，d|r<br>    所以gcd(a,b)=gcd(b.a%b).<br>    同样的，对于一个字符串的长度而言，可以先找到它们的公因数长度的子串，如果存在这样一个子串，那么它的长度必然等于原字符串中的任一个最小因子长度的子字符串。<br>    注意每次都要先进行条件判断，即它们是否同构</p>
+</blockquote>
+<pre><code>class Solution {
+public:
+    inline int gcd(int a,int b){return b&#x3D;&#x3D;0?a:gcd(b,a%b);}
+    string gcdOfStrings(string str1, string str2) {
+        if(str1+str2!&#x3D;str2+str1)    return&quot;&quot;;
+        return str1.substr(0,gcd(str1.size(),str2.size()));
+    }
+};</code></pre>
             </div>
+            <hr>
+            <div>
+              <p>
+                
+                
+                  <span>
+                <i class="iconfont icon-tag"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/String/">String</a>
+                    
+                  </span>
+                
+              </p>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+            </div>
+
+            
           </div>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc-start"></div>
+<div id="toc">
+  <p class="h5"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -228,6 +307,57 @@
 
 
 
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var navHeight = $('#navbar').height();
+      var post = $('#post');
+      var toc = $('#toc');
+      var tocLimMax = post.offset().top + post.height() - navHeight;
+
+      $(window).scroll(function () {
+        var tocLimMin = $('#toc-start').offset().top - navHeight;
+        var scroH = document.body.scrollTop + document.documentElement.scrollTop;
+
+        if (tocLimMin <= scroH && scroH <= tocLimMax) {
+          toc.css({
+            'display': 'block',
+            'position': 'fixed',
+            'top': navHeight,
+          });
+        } else if (scroH <= tocLimMin) {
+          toc.css({
+            'position': '',
+            'top': '',
+          });
+        } else if (scroH > tocLimMax) {
+          toc.css('display', 'none');
+        }
+      });
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        scrollSmooth: true,
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc > p').css('visibility', 'visible');
+      }
+      var offset = $('#board-ctn').css('margin-right')
+      $('#toc-ctn').css({
+        'right': offset
+      })
+    });
+  </script>
+
+
+
 
 
 
@@ -256,7 +386,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Tag&nbsp;",
+        "LeetCode1071&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

@@ -132,7 +132,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    94 字
+                    1k 字
                   </span>
                 
 
@@ -140,7 +140,7 @@
                   
                   <span class="post-meta">
                       <i class="far fa-clock"></i>
-                      1 分钟
+                      5 分钟
                   </span>
                 
 
@@ -177,21 +177,102 @@
             <div class="markdown-body">
               <blockquote><p>B-树的操作：插入与删除</p>
 </blockquote>
-
+<h3 id="基本框架"><a href="#基本框架" class="headerlink" title="基本框架"></a>基本框架</h3><p>首先，用查找算法找到关键码对应节点及其直接后继，类似于执行BST的删除操作，然后交换当前节点与直接后继，并将交换后的直接后继处的叶子节点删除。</p>
 <pre><code>template&lt;typename T&gt; bool BTree&lt;T&gt;::remove(T const&amp; e){
     BTNode&lt;T&gt;* v&#x3D;search(e);
     if(!v)  return false;
     Rank r&#x3D;v-&gt;key.search(e);
-    if(v-&gt;child[0]){
+    if(v-&gt;child[0]){&#x2F;&#x2F;如果v不是叶子节点，必然存在直接后继
         BTNode&lt;T&gt;* u&#x3D;v-&gt;child[r+1];
         while(u-&gt;child[0])  u&#x3D;u-&gt;child[0];
         v-&gt;key[r]&#x3D;u-&gt;key[0];
         v-&gt;key.remove(r);
         v-&gt;child.remove(r+1);
         _size--;
-    }       
+    }
+    solveUnderFlow(v);&#x2F;&#x2F;处理由于删除发生的下溢问题
+    return true;       
 }</code></pre>
-<h3 id="AAAAAAAAA"><a href="#AAAAAAAAA" class="headerlink" title="AAAAAAAAA"></a>AAAAAAAAA</h3><h2 id="AAAAABBBBAAAA"><a href="#AAAAABBBBAAAA" class="headerlink" title="AAAAABBBBAAAA"></a>AAAAABBBBAAAA</h2>
+<h3 id="下溢问题"><a href="#下溢问题" class="headerlink" title="下溢问题"></a>下溢问题</h3><p>三种可能：左侧足够多，右侧足够多，左右都即将下溢</p>
+<pre><code>template&lt;typename T&gt; void BTree&lt;T&gt;::solveUnderFlow(BTNode&lt;T&gt;* v){
+    if((_order+1)&#x2F;2&lt;&#x3D;v-&gt;child-&gt;size())&#x2F;&#x2F;没有发生下溢，不需要变化
+        return;
+    BTNode&lt;T&gt;* p&#x3D;v-&gt;parent;
+    if(!p){
+        if(!v-&gt;key.size()&amp;&amp;v-&gt;child[0]){
+            _root&#x3D;v-&gt;child[0];
+            _root-&gt;parent&#x3D;NULL;
+            v-&gt;child[0]&#x3D;NULL;
+            release(v);
+        }&#x2F;&#x2F;树根v没有关键码，却有唯一的非空孩子
+        &#x2F;&#x2F;则可以销毁掉这个节点，并将整树高度下降一个单位       
+        return;
+    }
+    Rank r&#x3D;0;
+    while(p-&gt;child[r]!&#x3D;v)   r++;
+    &#x2F;&#x2F;确定v是p的第r个孩子，此时由于v可能不含关键码
+    &#x2F;&#x2F;所以不能直接通过关键码查找v
+    &#x2F;&#x2F;情况1：向左兄弟借关键码
+    if(r&gt;0){&#x2F;&#x2F;v不是p的第一个孩子
+        BTNode&lt;T&gt;* ls&#x3D;p-&gt;child[r-1];&#x2F;&#x2F;想想中序遍历的直接后继
+        if((_order+1)&#x2F;2&lt;ls-&gt;child.size()){&#x2F;&#x2F;左兄弟够借
+            v-&gt;key.insert(0,p-&gt;key[r-1]);&#x2F;&#x2F;先从父亲借1个
+            p-&gt;key[r-1]&#x3D;ls-&gt;key.remove(ls-&gt;key.size()-1);&#x2F;&#x2F;左兄弟移给父亲
+            v-&gt;child.insert(0,ls-&gt;child.remove(ls-&gt;child.size()-1));&#x2F;&#x2F;引用节点也要相应的转移给右边的兄弟
+        }
+        if(v-&gt;child[0]) v-&gt;child[0]-&gt;parent&#x3D;v;
+        &#x2F;&#x2F;移完了记得更新parent引用
+        return;
+    }
+    &#x2F;&#x2F;至此，左兄弟要么为空，要么不够借
+    &#x2F;&#x2F;情况2：向右兄弟借关键码
+    if(r&lt;p-&gt;child.size()){
+        BTNode&lt;T&gt;* rs&#x3D;p-&gt;child[r+1];
+        if((_order+1)&#x2F;2&lt;rs-&gt;child.size()){
+            v-&gt;key.insert(v-&gt;key.size(),p-&gt;key[r]);&#x2F;&#x2F;从父亲借一个，插入左边最右侧
+            p-&gt;key[r]&#x3D;rs-&gt;key.remove(0);
+            v-&gt;child.insert(v-&gt;child.size(),rs-&gt;child.remove(0));
+        }
+        if(v-&gt;child[v-&gt;child.size()-1])
+            v-&gt;child[v-&gt;child.size()-1]-&gt;parent&#x3D;v;   
+    }
+    &#x2F;&#x2F;至此，右兄弟要么为空，要么不够借
+    &#x2F;&#x2F;情况3，左右兄弟要么其一为空，要么都不够借
+    if(r&gt;0){&#x2F;&#x2F;向左兄弟合并
+        BTNode&lt;T&gt;* ls&#x3D;p-&gt;child[r-1];
+        ls-&gt;key.insert(ls-&gt;key.size(),p-&gt;key.remove(r-1));
+        p-&gt;child.remove(r);&#x2F;&#x2F;将p的第r-1个关键码转入ls
+        ls-&gt;child.insert(ls-&gt;child.size(),v-&gt;child.remove(0));
+        if(ls-&gt;child[ls-&gt;child.size()-1])
+            ls-&gt;child[ls-&gt;child.size()-1]-&gt;parent&#x3D;ls;
+        while(!v-&gt;key.empty()){
+            ls-&gt;key.insert(ls-&gt;key.size(),v-&gt;key.remove(0));
+            ls-&gt;child.insert(ls-&gt;child.size(),v-&gt;child.remove(0));
+            if(ls-&gt;child[ls-&gt;child.size()-1])
+                ls-&gt;child[ls-&gt;child.size()-1]-&gt;parent&#x3D;ls;
+        }
+        release(v);
+    }
+    else{&#x2F;&#x2F;向右兄弟合并
+        BTNode&lt;T&gt;* rs&#x3D;p-&gt;child[r+1];
+        rs-&gt;key.insert(0,p-&gt;key.remove(r));
+        p-&gt;child.remove(r);
+        rs-&gt;child.insert(0,v-&gt;child.remove(v-&gt;child.size()-1));
+        if(rs-&gt;child[0])
+            rs-&gt;child[0]-&gt;parent&#x3D;rs;
+        while(!v-&gt;key.empty()){
+            rs-&gt;key.insert(0,v-&gt;key.remove(v-&gt;key.size()-1));
+            rs-&gt;child.insert(0,v-&gt;key.remove(v-child.size()-1));
+            if(rs-&gt;child[0])
+                rs-&gt;child[0]-&gt;parent&#x3D;rs;
+        }
+        release(v);
+    }
+    solveUnderFlow(p);
+    return;
+}</code></pre>
+<p>复杂度：平均只有常数次的操作。极端情况为O(lgn)的时间复杂度。</p>
+
             </div>
             <hr>
             <div>

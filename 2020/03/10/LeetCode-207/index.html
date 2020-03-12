@@ -132,7 +132,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    208 字
+                    719 字
                   </span>
                 
 
@@ -140,7 +140,7 @@
                   
                   <span class="post-meta">
                       <i class="far fa-clock"></i>
-                      1 分钟
+                      3 分钟
                   </span>
                 
 
@@ -176,7 +176,9 @@
             
             <div class="markdown-body">
               <p><img src="/2020/03/10/LeetCode-207/test.png" srcset="/img/loading.gif" alt="207"></p>
-<pre><code>class Solution {
+<h3 id="如何理解这样一个问题"><a href="#如何理解这样一个问题" class="headerlink" title="如何理解这样一个问题"></a>如何理解这样一个问题</h3><blockquote><p>课程1是课程0的前期必修课程，所以存在1-&gt;0这样的一种映射关系<br>那么根据课程表里的信息，我们可以相应的建立这样一张课程图。<br>图中每一个顶点可能没有入度(因为没有前期必修的课程基础)，<br>这样的一系列节点自然符合课程的修读要求，是自然符合的。那么，我们只需要关系那些存在入度的顶点，观察它们再现有的条件下，是否能够满足，如果全部都满足了，那么就是有效的课程，反之则无效。</p>
+</blockquote>
+<h3 id="第一种策略：广度优先搜索"><a href="#第一种策略：广度优先搜索" class="headerlink" title="第一种策略：广度优先搜索"></a>第一种策略：广度优先搜索</h3><pre><code>class Solution {
 public:
     bool canFinish(int numCourses, vector&lt;vector&lt;int&gt;&gt;&amp; prerequisites) {
         map&lt;int,set&lt;int&gt;&gt; adjacent;
@@ -205,8 +207,9 @@ public:
         return count&#x3D;&#x3D;numCourses;
     }
 };</code></pre>
-
-<pre><code>class Solution {
+<blockquote><p>每一次操作时，先扣除与目前访问顶点相连的邻居们的入度，然后对于每一个入度为0的顶点的所有邻居进行遍历并将它们入队，完成一次操作，将完成的课程数count++，最后再与课程总数进行比较。</p>
+</blockquote>
+<h3 id="第二种策略-深度优先搜索"><a href="#第二种策略-深度优先搜索" class="headerlink" title="第二种策略: 深度优先搜索"></a>第二种策略: 深度优先搜索</h3><pre><code>class Solution {
 public:
     bool canFinish(int numCourses, vector&lt;vector&lt;int&gt;&gt;&amp; prerequisites) {
         map&lt;int,set&lt;int&gt;&gt; adjacent;
@@ -236,7 +239,8 @@ public:
     }
 };</code></pre>
 
-
+<blockquote><p>与第一种方法正好相反，我们对顶点的出度进行讨论。顶点出度为0的那些，作为深度优先搜索，应该是最后达到但是最先完成访问的那些末端，我们假设访问到了这样一个顶点，代表了我们修读完了一门课程，接下来我们去寻找能够访问到这个顶点的前驱们，注意先要将这些前驱们的出度进行修改。如果发现前驱们的出度也变为0，则我们就找到了这样一种前后对应关系的课程，反复操作直至栈空。注意如果存在环形结构，它们顶点的出度必然不为0，同时也不可能在合法访问后发生减小，因此它们根本无法被访问到，count不可能到达原定的课程数，也就不满足条件。</p>
+</blockquote>
             </div>
             <hr>
             <div>
