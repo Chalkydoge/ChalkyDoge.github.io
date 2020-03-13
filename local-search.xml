@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>MajorityElement</title>
+    <link href="/2020/03/13/MajorityElement/"/>
+    <url>/2020/03/13/MajorityElement/</url>
+    
+    <content type="html"><![CDATA[<pre><code>class Solution {public:    int majorityElement(vector&lt;int&gt;&amp; nums) {        int n&#x3D;nums.size();        int count&#x3D;0;        int temp&#x3D;0;        for(int i&#x3D;0;i&lt;n;i++){            if(count&#x3D;&#x3D;0){                temp&#x3D;nums[i];                count++;            }            else{                nums[i]&#x3D;&#x3D;temp?count++:count--;            }        }        return temp;    }};</code></pre><pre><code>class Solution {public:    int majorityElement(vector&lt;int&gt;&amp; nums) {        int n&#x3D;nums.size();        int res&#x3D;0;        for(int i&#x3D;0;i&lt;32;i++){            int one&#x3D;0,zero&#x3D;0;            for(int j&#x3D;0;j&lt;n;j++){                if(one&gt;n&#x2F;2||zero&gt;n&#x2F;2)   break;                if((nums[j]&amp;(1&lt;&lt;i))!&#x3D;0)   one++;                else   zero++;               }            if(one&gt;zero)                res&#x3D;res|(1&lt;&lt;i);        }        return res;    }};</code></pre>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Reverse Nodes in k-Group</title>
     <link href="/2020/03/12/LC-25/"/>
     <url>/2020/03/12/LC-25/</url>
