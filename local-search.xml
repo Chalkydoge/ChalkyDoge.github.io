@@ -4,6 +4,116 @@
   
   
   <entry>
+    <title>_200_岛屿数量</title>
+    <link href="/2020/03/14/%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/"/>
+    <url>/2020/03/14/%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/</url>
+    
+    <content type="html"><![CDATA[<pre><code>class UnionFind{    private:        int Count;        vector&lt;int&gt; parent;        vector&lt;int&gt; size;    public:        UnionFind(int n){            this-&gt;Count&#x3D;n;            for(int i&#x3D;0;i&lt;n;i++){                parent.push_back(i);                size.push_back(1);            }        }        int find(int p){            while(p!&#x3D;parent[p]){                parent[p]&#x3D;parent[parent[p]];                p&#x3D;parent[p];            }            return p;        }        void Union(int p,int q){            int rootP&#x3D;find(p);            int rootQ&#x3D;find(q);            if(connected(p,q))    return;            if(size[rootP]&gt;size[rootQ]){                parent[rootQ]&#x3D;rootP;                size[rootP]+&#x3D;size[rootQ];            }            else{                parent[rootP]&#x3D;rootQ;                size[rootQ]+&#x3D;size[rootP];            }            Count--;        }        bool connected(int p,int q){            int rootP&#x3D;find(p);            int rootQ&#x3D;find(q);            return rootP&#x3D;&#x3D;rootQ;        }        int count(){return Count;}};class Solution {public:    int numIslands(vector&lt;vector&lt;char&gt;&gt;&amp; grid) {        int row&#x3D;grid.size();        if(row&#x3D;&#x3D;0)            return 0;        int col&#x3D;grid[0].size();        if(col&#x3D;&#x3D;0)            return 0;        int n&#x3D;row*col;        UnionFind AA(n+1);        int dx[2]&#x3D;{1,0};        int dy[2]&#x3D;{0,-1};        for(int i&#x3D;0;i&lt;n;i++){            int x&#x3D;i&#x2F;col;            int y&#x3D;i%col;            if(grid[x][y]&#x3D;&#x3D;&#39;1&#39;){                for(int j&#x3D;0;j&lt;2;j++){                    int xx&#x3D;x+dx[j];                    int yy&#x3D;y+dy[j];                    if(xx&gt;&#x3D;0&amp;&amp;xx&lt;row&amp;&amp;yy&gt;&#x3D;0&amp;&amp;yy&lt;col&amp;&amp;grid[xx][yy]&#x3D;&#x3D;&#39;1&#39;){                        AA.Union(i,yy+xx*col);                    }                }            }            else{                AA.Union(i,n);            }        }        return AA.count()-1;            }};</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Breadth First Search</tag>
+      
+      <tag>Depth First Search</tag>
+      
+      <tag>Union Find</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>最长上升子序列</title>
+    <link href="/2020/03/14/%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97/"/>
+    <url>/2020/03/14/%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>给定一个无序的整数数组，找到其中最长上升子序列的长度。</p><p>示例:</p><p>输入: [10,9,2,5,3,7,101,18]<br>输出: 4<br>解释: 最长的上升子序列是 [2,3,7,101]，它的长度是 4。</p><p>说明:</p><pre><code>可能会有多种最长上升子序列的组合，你只需要输出对应的长度即可。你算法的时间复杂度应该为 O(n2) 。</code></pre><p>进阶: 你能将算法的时间复杂度降低到 O(n log n) 吗?</p><p>来源：力扣（LeetCode）每日一题Day14</p></blockquote><pre><code>class Solution {public:    int lengthOfLIS(vector&lt;int&gt;&amp; nums) {          int n&#x3D;nums.size();        if(n&lt;1)            return 0;        int dp[n]&#x3D;{1};        int m&#x3D;0;        for(int num:nums){            int lo&#x3D;0;            int hi&#x3D;m;            while(lo&lt;hi){                int mid&#x3D;lo+(hi-lo)&#x2F;2;                if(dp[mid]&lt;num)                    lo&#x3D;mid+1;                else                    hi&#x3D;mid;            }            dp[lo]&#x3D;num;            if(lo&#x3D;&#x3D;m)                m++;        }        return m;    }};</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Array</tag>
+      
+      <tag>Dynamic Programming</tag>
+      
+      <tag>Binary Search</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>打开转盘锁</title>
+    <link href="/2020/03/14/%E6%89%93%E5%BC%80%E8%BD%AC%E7%9B%98%E9%94%81/"/>
+    <url>/2020/03/14/%E6%89%93%E5%BC%80%E8%BD%AC%E7%9B%98%E9%94%81/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>你有一个带有四个圆形拨轮的转盘锁。每个拨轮都有10个数字： ‘0’, ‘1’, ‘2’, ‘3’, ‘4’, ‘5’, ‘6’, ‘7’, ‘8’, ‘9’ 。每个拨轮可以自由旋转：例如把 ‘9’ 变为  ‘0’，’0’ 变为 ‘9’ 。每次旋转都只能旋转一个拨轮的一位数字。</p><p>锁的初始数字为 ‘0000’ ，一个代表四个拨轮的数字的字符串。</p><p>列表 deadends 包含了一组死亡数字，一旦拨轮的数字和列表里的任何一个元素相同，这个锁将会被永久锁定，无法再被旋转。</p><p>字符串 target 代表可以解锁的数字，你需要给出最小的旋转次数，如果无论如何不能解锁，返回 -1。</p><p>示例 1:</p><p>输入：deadends = [“0201”,”0101”,”0102”,”1212”,”2002”], target = “0202”<br>输出：6<br>解释：<br>可能的移动序列为 “0000” -&gt; “1000” -&gt; “1100” -&gt; “1200” -&gt; “1201” -&gt; “1202” -&gt; “0202”。<br>注意 “0000” -&gt; “0001” -&gt; “0002” -&gt; “0102” -&gt; “0202” 这样的序列是不能解锁的，<br>因为当拨动到 “0102” 时这个锁就会被锁定。</p><p>示例 2:</p><p>输入: deadends = [“8888”], target = “0009”<br>输出：1<br>解释：<br>把最后一位反向旋转一次即可 “0000” -&gt; “0009”。</p><p>示例 3:</p><p>输入: deadends = [“8887”,”8889”,”8878”,”8898”,”8788”,”8988”,”7888”,”9888”], target = “8888”<br>输出：-1<br>解释：<br>无法旋转到目标数字且不被锁定。</p><p>示例 4:</p><p>输入: deadends = [“0000”], target = “8888”<br>输出：-1</p><p>提示：</p><pre><code>死亡列表 deadends 的长度范围为 [1, 500]。目标数字 target 不会在 deadends 之中。每个 deadends 和 target 中的字符串的数字会在 10,000 个可能的情况 &apos;0000&apos; 到 &apos;9999&apos; 中产生。</code></pre><p>来源：力扣（LeetCode）752</p></blockquote><pre><code>class Solution {public:    int openLock(vector&lt;string&gt;&amp; deadends, string target) {        unordered_set&lt;string&gt; deadset(deadends.begin(),deadends.end());        if(deadset.find(&quot;0000&quot;)!&#x3D;deadset.end())            return -1;        unordered_set&lt;string&gt; visited;        deque&lt;string&gt; temp;        visited.insert(&quot;0000&quot;);        temp.push_back(&quot;0000&quot;);        int step&#x3D;0;        while(!temp.empty()){            int n&#x3D;temp.size();            for(int j&#x3D;0;j&lt;n;j++){                string s&#x3D;temp.front();                temp.pop_front();                if(s&#x3D;&#x3D;target)                    return step;                                for(int i&#x3D;0;i&lt;4;i++){                    string s1,s2;                    s1&#x3D;s;s2&#x3D;s;                    s1[i]&#x3D;(s1[i]&#x3D;&#x3D;&#39;0&#39;)?&#39;9&#39;:s1[i]-1;                    s2[i]&#x3D;(s2[i]&#x3D;&#x3D;&#39;9&#39;)?&#39;0&#39;:s2[i]+1;                    if(visited.find(s1)&#x3D;&#x3D;visited.end()&amp;&amp;deadset.find(s1)&#x3D;&#x3D;deadset.end()){                        temp.push_back(s1);                        visited.insert(s1);                    }                    if(visited.find(s2)&#x3D;&#x3D;visited.end()&amp;&amp;deadset.find(s2)&#x3D;&#x3D;deadset.end()){                        temp.push_back(s2);                        visited.insert(s2);                    }                }            }            step++;        }        return -1;    }};</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Breadth First Search</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>复原IP地址</title>
+    <link href="/2020/03/14/%E5%A4%8D%E5%8E%9FIP%E5%9C%B0%E5%9D%80/"/>
+    <url>/2020/03/14/%E5%A4%8D%E5%8E%9FIP%E5%9C%B0%E5%9D%80/</url>
+    
+    <content type="html"><![CDATA[<h3 id="此题边界条件有很多细节"><a href="#此题边界条件有很多细节" class="headerlink" title="此题边界条件有很多细节"></a>此题边界条件有很多细节</h3><blockquote><p>IP地址的范围是0~255，这个0的存在就很emm<br>比如一个测试用例&gt;”010010”<br>0这里是不可以前置于一个整数前的!010，001这种是不允许的</p></blockquote><blockquote><p>标准回溯法：<br>    从一个起点开始，向可行的所有分支中尝试，并将可行的加入解集，如果发现不符合，立刻删除回到上一步重新选择。<br>    这里的pruning条件是当前的IP取完后，后面剩余的字符串长度是否可以支持后续的IP地址选取。<br>    depth代表你取了几个IP地址，例如depth=2，剩余字符串长度却有7，此时就发生了上溢，因此需要跳过这种情况，就有了<br>        s.length()-1-right&gt;3<em>(4-depth) 3为每一位IP最长的可能数字<br>    同理，下溢时，会有<br>        s.length()-1-right&lt;1</em>(4-depth)<br>    对于符合条件的子串，将它转为数字，判断是否合法(0-255)<br>    然后再接在结果串的末尾+”.”<br>    递归(深度搜索)，直到depth==4<br>    还有一点就是对前导0的判断，含有前导0的分支应立刻删去！</p></blockquote><pre><code>class Solution {public:    vector&lt;string&gt; restoreIpAddresses(string s) {        vector&lt;string&gt; res;        backtrack(0,1,res,s,&quot;&quot;);        return res;    }    void backtrack(int left,int depth,vector&lt;string&gt;&amp; res,string &amp;s,string temp){        if(left&gt;&#x3D;s.length())            return;        for(int right&#x3D;left;right&lt;s.length()&amp;&amp;right&lt;&#x3D;left+2;right++){            if(s.length()-right-1&gt;3*(4-depth))    continue;            if(s.length()-right-1&lt;1*(4-depth))    continue;            char t[4];            int i&#x3D;0;            for(;i&lt;&#x3D;right-left;i++){                t[i]&#x3D;s[left+i];            }            t[i]&#x3D;&#39;\0&#39;;            if(is_ip(t)){                if(depth&#x3D;&#x3D;4){                    temp+&#x3D;t;                    res.push_back(temp);                    return;                }                backtrack(right+1,depth+1,res,s,temp+t+&quot;.&quot;);            }        }    }    bool is_ip(const char s[]){        if(s[0]&#x3D;&#x3D;&#39;0&#39;&amp;&amp;s[1]!&#x3D;&#39;\0&#39;)            return false;        int a;        sscanf(s,&quot;%d&quot;,&amp;a);        if(a&gt;&#x3D;0&amp;&amp;a&lt;256)            return true;        else            return false;    }};</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Backtrack</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>CountCompleteTreeNodes</title>
+    <link href="/2020/03/13/CountCompleteTreeNodes/"/>
+    <url>/2020/03/13/CountCompleteTreeNodes/</url>
+    
+    <content type="html"><![CDATA[<pre><code>&#x2F;** * Definition for a binary tree node. * struct TreeNode { *     int val; *     TreeNode *left; *     TreeNode *right; *     TreeNode(int x) : val(x), left(NULL), right(NULL) {} * }; *&#x2F;class Solution {public:    int countNodes(TreeNode* root) {        if(!root)            return 0;        int left&#x3D;level(root-&gt;left);        int right&#x3D;level(root-&gt;right);        if(left&#x3D;&#x3D;right){            return countNodes(root-&gt;right)+(1&lt;&lt;left);        }        else{            return countNodes(root-&gt;left)+(1&lt;&lt;right);        }    }    int level(TreeNode* root){        int level&#x3D;0;        while(root){            root&#x3D;root-&gt;left;            level++;        }        return level;    }};</code></pre>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>BinaryTreePaths</title>
+    <link href="/2020/03/13/BinaryTreePaths/"/>
+    <url>/2020/03/13/BinaryTreePaths/</url>
+    
+    <content type="html"><![CDATA[<pre><code>&#x2F;** * Definition for a binary tree node. * struct TreeNode { *     int val; *     TreeNode *left; *     TreeNode *right; *     TreeNode(int x) : val(x), left(NULL), right(NULL) {} * }; *&#x2F;class Solution {public:    vector&lt;string&gt; binaryTreePaths(TreeNode* root) {        if(!root)            return {};        vector&lt;string&gt; res;        Path(root,res,&quot;&quot;);        return res;      }    void Path(TreeNode* root,vector&lt;string&gt;&amp; res,string path){        path+&#x3D;to_string(root-&gt;val);        if(!root-&gt;left&amp;&amp;!root-&gt;right){            res.push_back(path);            return;        }              if(root-&gt;left)            Path(root-&gt;left,res,path+&quot;-&gt;&quot;);        if(root-&gt;right)            Path(root-&gt;right,res,path+&quot;-&gt;&quot;);    }};</code></pre><p>不递归这就绝对不是简单的问题了(说到底还是自己太vegetable)</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>MajorityElement</title>
     <link href="/2020/03/13/MajorityElement/"/>
     <url>/2020/03/13/MajorityElement/</url>
