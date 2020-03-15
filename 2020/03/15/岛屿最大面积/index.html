@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="Chalky Doge">
   <meta name="keywords" content="">
-  <title>Archives - CodingDoge</title>
+  <title>岛屿最大面积 - CodingDoge</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -42,7 +42,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -110,7 +110,7 @@
 </nav>
 
     <div class="view intro-2" id="background" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
+         style="background: url('/img/bgp.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask rgba-black-light flex-center">
@@ -119,6 +119,40 @@
               
             </span>
 
+            
+              
+                <p class="mt-3 post-meta">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                  Sunday, March 15th 2020, 4:20 pm
+                </p>
+              
+
+              <p class="mt-1">
+                
+                  
+                  <span class="post-meta">
+                    <i class="far fa-chart-bar"></i>
+                    650 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta">
+                      <i class="far fa-clock"></i>
+                      3 分钟
+                  </span>
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  <span id="busuanzi_container_page_pv" class="post-meta" style="display: none">
+                    <i class="far fa-eye" aria-hidden="true"></i>
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>
+                
+              </p>
             
           </div>
 
@@ -130,90 +164,202 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">18 posts in total.</p>
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/03/12/LeetCode1071/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">LeetCode1071</span>
-      <span style="float: right;">03-12</span>
-    </a>
-  
-    
-    <a href="/2020/03/11/Combination/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Combination</span>
-      <span style="float: right;">03-11</span>
-    </a>
-  
-    
-    <a href="/2020/03/11/findKth/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">findKth</span>
-      <span style="float: right;">03-11</span>
-    </a>
-  
-    
-    <a href="/2020/03/10/LeetCode-207/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">LeetCode-207</span>
-      <span style="float: right;">03-10</span>
-    </a>
-  
-    
-    <a href="/2020/03/10/LeetCode-84/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">LeetCode-84</span>
-      <span style="float: right;">03-10</span>
-    </a>
-  
-    
-    <a href="/2020/03/10/LeetCode-18/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">LeetCode-18</span>
-      <span style="float: right;">03-10</span>
-    </a>
-  
-    
-    <a href="/2020/03/09/B-Tree/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">B-Tree dynamtic procedures/remove&amp;insert</span>
-      <span style="float: right;">03-09</span>
-    </a>
-  
-    
-    <a href="/2020/03/09/hello-world/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Hello World</span>
-      <span style="float: right;">03-09</span>
-    </a>
-  
-</div>
 
-  <nav aria-label="index posts navigation">
-    <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
-      <a class="extend prev" rel="prev" href="/archives/2020/"><i class="fas fa-angle-double-left"></i></a><a class="page-number" href="/archives/2020/">1</a><span class="page-number current">2</span>
-    </span>
-  </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByClassName("page-number")) {
-      ele.href += '#board';
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5 z-depth-3" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <div class="markdown-body">
+              <p>岛屿系列No.2<br>  <a id="more"></a></p>
+<pre><code>class Solution {
+    int dx[4]&#x3D;{1,-1,0,0};
+    int dy[4]&#x3D;{0,0,1,-1};
+public:
+    int maxAreaOfIsland(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
+        int row&#x3D;grid.size();
+        int col&#x3D;grid[0].size();
+        int res&#x3D;0;
+        deque&lt;pair&lt;int,int&gt;&gt; nodes;
+        for(int i&#x3D;0;i&lt;row;i++){
+            for(int j&#x3D;0;j&lt;col;j++){
+                int area&#x3D;0;
+                nodes.push_back(make_pair(i,j));
+                while(!nodes.empty()){
+                    int x&#x3D;nodes.front().first;
+                    int y&#x3D;nodes.front().second;
+                    nodes.pop_front();
+                    if(!ingrid(x,y,row,col)||grid[x][y]&#x3D;&#x3D;0)    continue;
+                    area++;
+                    grid[x][y]&#x3D;0;
+                    for(int k&#x3D;0;k&lt;4;k++){
+                        nodes.push_back(make_pair(x+dx[k],y+dy[k]));
+                    }
+                }
+                res&#x3D;max(res,area);
+            }
+        }
+        return res;
     }
+    bool ingrid(int i,int j,int row,int col){
+        return (i&gt;&#x3D;0&amp;&amp;i&lt;row)&amp;&amp;(j&gt;&#x3D;0&amp;&amp;j&lt;col);
+    }
+};</code></pre>
+<p>当然，其实DFS更简单直观的说，可以直接DFS函数，也可以直接用栈模拟DFS。 把4个方向进行搜索，面积增长，岛屿探索完就置0避免反复探索，最后返回面积中最大的即可。<br>其实，并查集也可以。把所有为1的连通域的子节点数进行统计，求最大值也对。</p>
+<pre><code>class Solution {
+    int maxArea&#x3D;0;
+    vector&lt;int&gt; parent;
+    vector&lt;int&gt; size;
+public:        
+    void UnionFind(int n){
+        parent&#x3D;vector&lt;int&gt;(n,-1);
+        size&#x3D;vector&lt;int&gt;(n,0);
+    }
+    int find(int p){
+        while(p!&#x3D;parent[p]){
+            parent[p]&#x3D;parent[parent[p]];
+            p&#x3D;parent[p];
+        }
+        return p;
+    }
+    bool connected(int p,int q){
+        int rootP&#x3D;find(p);
+        int rootQ&#x3D;find(q);
+        return rootP&#x3D;&#x3D;rootQ;
+        }   
+    void Union(int p,int q){
+        int rootP&#x3D;find(p);
+            int rootQ&#x3D;find(q);
+            if(connected(p,q))    return;
+            if(size[rootP]&gt;size[rootQ]){
+                parent[rootQ]&#x3D;rootP;
+                size[rootP]+&#x3D;size[rootQ];
+                maxArea&#x3D;max(size[rootP],maxArea);
+            }
+            else{
+                parent[rootP]&#x3D;rootQ;
+                size[rootQ]+&#x3D;size[rootP];
+                maxArea&#x3D;max(size[rootQ],maxArea);
+            }
+        }     
+    inline bool inGrid(int x,int y,int row,int col){
+        return (x&gt;&#x3D;0&amp;&amp;x&lt;row)&amp;&amp;(y&gt;&#x3D;0&amp;&amp;y&lt;col);
+    }
+    int maxAreaOfIsland(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
+        int row&#x3D;grid.size();
+        if(row&#x3D;&#x3D;0)
+            return 0;
+        int col&#x3D;grid[0].size();
+        UnionFind(row*col);
+        for(int m&#x3D;0;m&lt;row;m++){
+            for(int n&#x3D;0;n&lt;col;n++){
+                if(grid[m][n]&#x3D;&#x3D;1){
+                    parent[m*col+n]&#x3D;m*col+n;
+                    size[m*col+n]&#x3D;1;
+                }
+            }
+        }
+        bool iszero&#x3D;true;
+        for(int i&#x3D;0;i&lt;row;i++){
+            for(int j&#x3D;0;j&lt;col;j++){
+                if(grid[i][j]&#x3D;&#x3D;1){
+                    iszero&#x3D;false;
+                    maxArea&#x3D;max(maxArea,1);
+                    if(i&gt;0&amp;&amp;grid[i-1][j]&#x3D;&#x3D;1){   
+                        Union(i*col+j,(i-1)*col+j);
+                    }
+                    if(j&gt;0&amp;&amp;grid[i][j-1]&#x3D;&#x3D;1){
+                        Union(i*col+j,i*col+j-1); 
+                    } 
+                }
+            }
+        }
+        if(iszero){
+            return 0;
+        }
+        else
+            return maxArea;
+    }
+};</code></pre>
+<p>我终于写出来了！！！！！bug无数的并茶几啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+
+            </div>
+            <hr>
+            <div>
+              <p>
+                
+                
+                  <span>
+                <i class="iconfont icon-tag"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Breadth-First-Search/">Breadth First Search</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Depth-First-Search/">Depth First Search</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Union-Find/">Union Find</a>
+                    
+                  </span>
+                
+              </p>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.11.1/js/md5.min.js"></script>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: '0446fd982233fd70e38e',
+      clientSecret: '5b6294932c34fb8c09cbe0635d9e1143f5d75aa0',
+      repo: 'ChalkyDoge.github.io',
+      owner: 'ChalkyDoge',
+      admin: 'ChalkyDoge',
+      id: md5(location.pathname),
+      language: 'zh-CN',
+      perPage: 15,
+      pagerDirection: 'last',
+      createIssueManually: 'true',
+      distractionFreeMode: 'false'
+    });
+
+    gitalk.render('gitalk-container')
   </script>
 
 
               </div>
-            </div>
+            
           </div>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc-start"></div>
+<div id="toc">
+  <p class="h5"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -295,6 +441,57 @@
 
 
 
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var navHeight = $('#navbar').height();
+      var post = $('#post');
+      var toc = $('#toc');
+      var tocLimMax = post.offset().top + post.height() - navHeight;
+
+      $(window).scroll(function () {
+        var tocLimMin = $('#toc-start').offset().top - navHeight;
+        var scroH = document.body.scrollTop + document.documentElement.scrollTop;
+
+        if (tocLimMin <= scroH && scroH <= tocLimMax) {
+          toc.css({
+            'display': 'block',
+            'position': 'fixed',
+            'top': navHeight,
+          });
+        } else if (scroH <= tocLimMin) {
+          toc.css({
+            'position': '',
+            'top': '',
+          });
+        } else if (scroH > tocLimMax) {
+          toc.css('display', 'none');
+        }
+      });
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        scrollSmooth: true,
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc > p').css('visibility', 'visible');
+      }
+      var offset = $('#board-ctn').css('margin-right')
+      $('#toc-ctn').css({
+        'right': offset
+      })
+    });
+  </script>
+
+
+
 
 
 
@@ -323,7 +520,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Archive&nbsp;",
+        "岛屿最大面积&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
