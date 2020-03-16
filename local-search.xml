@@ -4,6 +4,72 @@
   
   
   <entry>
+    <title>LRU设计</title>
+    <link href="/2020/03/17/LRU%E8%AE%BE%E8%AE%A1/"/>
+    <url>/2020/03/17/LRU%E8%AE%BE%E8%AE%A1/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>栈实现队列</title>
+    <link href="/2020/03/17/%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/"/>
+    <url>/2020/03/17/%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>字符串压缩</title>
+    <link href="/2020/03/17/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%8B%E7%BC%A9/"/>
+    <url>/2020/03/17/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%8B%E7%BC%A9/</url>
+    
+    <content type="html"><![CDATA[<p>比较简单的每日一题~</p><a id="more"></a><pre><code>class Solution {public:    string compressString(string S) {        int len&#x3D;S.length();        string str;        for(int i&#x3D;0;i&lt;len;i++){            str+&#x3D;S[i];            int count&#x3D;1;            while(S[i]&#x3D;&#x3D;S[i+1]&amp;&amp;i&lt;len-1){                i++;                count++;            }            str+&#x3D;to_string(count);        }        int len1&#x3D;str.length();        if(len1&gt;&#x3D;len){            return S;        }        else            return str;    }};</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>String</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>拼写单词</title>
+    <link href="/2020/03/17/%E6%8B%BC%E5%86%99%E5%8D%95%E8%AF%8D/"/>
+    <url>/2020/03/17/%E6%8B%BC%E5%86%99%E5%8D%95%E8%AF%8D/</url>
+    
+    <content type="html"><![CDATA[<p>Brute Force…</p><a id="more"></a><pre><code>class Solution {public:    int countCharacters(vector&lt;string&gt;&amp; words, string chars) {        int res&#x3D;0;        unordered_map&lt;char,int&gt; table;        for(char c:chars){            table[c]++;        }        unordered_map&lt;char,int&gt; temp&#x3D;table;        for(string s:words){            int count&#x3D;0;            for(char d:s){                if(temp.find(d)!&#x3D;temp.end()&amp;&amp;temp[d]&gt;0){                    count++;                    temp[d]--;                    continue;                }                else{                    count&#x3D;0;                    break;                                    }            }            temp&#x3D;table;            res+&#x3D;count;        }        return res;    }};</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>String</tag>
+      
+      <tag>Hashing</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>岛屿最大面积</title>
     <link href="/2020/03/15/%E5%B2%9B%E5%B1%BF%E6%9C%80%E5%A4%A7%E9%9D%A2%E7%A7%AF/"/>
     <url>/2020/03/15/%E5%B2%9B%E5%B1%BF%E6%9C%80%E5%A4%A7%E9%9D%A2%E7%A7%AF/</url>
