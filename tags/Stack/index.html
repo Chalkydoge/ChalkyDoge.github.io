@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="Chalky Doge">
   <meta name="keywords" content="">
-  <title>栈实现队列 - CodingDoge</title>
+  <title>Tags - Stack - CodingDoge</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -42,7 +42,7 @@
 
 
 <body>
-  <header style="height: 70vh;">
+  <header style="height: 80vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -110,7 +110,7 @@
 </nav>
 
     <div class="view intro-2" id="background" parallax=true
-         style="background: url('/img/bgp.jpg') no-repeat center center;
+         style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask rgba-black-light flex-center">
@@ -119,40 +119,6 @@
               
             </span>
 
-            
-              
-                <p class="mt-3 post-meta">
-                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-                  Tuesday, March 17th 2020, 12:35 am
-                </p>
-              
-
-              <p class="mt-1">
-                
-                  
-                  <span class="post-meta">
-                    <i class="far fa-chart-bar"></i>
-                    281 字
-                  </span>
-                
-
-                
-                  
-                  <span class="post-meta">
-                      <i class="far fa-clock"></i>
-                      1 分钟
-                  </span>
-                
-
-                
-                  <!-- 不蒜子统计文章PV -->
-                  
-                  <span id="busuanzi_container_page_pv" class="post-meta" style="display: none">
-                    <i class="far fa-eye" aria-hidden="true"></i>
-                    <span id="busuanzi_value_page_pv"></span> 次
-                  </span>
-                
-              </p>
             
           </div>
 
@@ -164,141 +130,37 @@
 
   <main>
     
+      <div class="container nopadding-md">
+        <div class="py-5 z-depth-3" id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<div class="list-group">
+<!--  <p class="h4">1 posts in total.</p>-->
+  <hr>
+  
+    
       
-
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5 z-depth-3" id="board">
-          <div class="post-content mx-auto" id="post">
-            
-            <div class="markdown-body">
-              <pre><code>假象。</code></pre><a id="more"></a>
-<p>一个栈就是普通的栈，再用一个栈转移元素用<br>当有元素入队了，压入普通的栈；<br>当有元素出队了，先把栈上除栈底以外的全部转移，把栈底元素返回并弹出<br>此后如果再出队，此时经刚刚的操作，另一个栈中元素顺序发生的奇妙的转变，直接调用pop就是队列顺序的出队，直到另一个栈空。<br>peek就是pop没有pop的操作😂😂😂</p>
-<pre><code>class MyQueue {
-public:
-    &#x2F;** Initialize your data structure here. *&#x2F;
-    MyQueue() {
-
-    }
+      <p class="h5">2020</p>
     
-    &#x2F;** Push element x to the back of queue. *&#x2F;
-    void push(int x) {
-        front.push(x);
-    }
-    
-    &#x2F;** Removes the element from in front of queue and returns that element. *&#x2F;
-    int pop() {
-        if(rear.empty()){
-            while(!front.empty()){
-                rear.push(front.top());
-                front.pop();
-            }
-        }
-        int temp&#x3D;rear.top();
-        rear.pop();
-        return temp;
-    }
-    
-    &#x2F;** Get the front element. *&#x2F;
-    int peek() {
-        if(rear.empty()){
-            while(!front.empty()){
-                rear.push(front.top());
-                front.pop();                
-            }
-        }
-        return rear.top();
-    }
-    
-    &#x2F;** Returns whether the queue is empty. *&#x2F;
-    bool empty() {
-        return front.empty()&amp;&amp;rear.empty();
-    }
-private:
-    stack&lt;int&gt; front;
-    stack&lt;int&gt; rear;
-};
+    <a href="/2020/03/17/%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">栈实现队列</span>
+      <span style="float: right;">03-17</span>
+    </a>
+  
+</div>
 
-&#x2F;**
- * Your MyQueue object will be instantiated and called as such:
- * MyQueue* obj &#x3D; new MyQueue();
- * obj-&gt;push(x);
- * int param_2 &#x3D; obj-&gt;pop();
- * int param_3 &#x3D; obj-&gt;peek();
- * bool param_4 &#x3D; obj-&gt;empty();
- *&#x2F;</code></pre>
-            </div>
-            <hr>
-            <div>
-              <p>
-                
-                
-                  <span>
-                <i class="iconfont icon-tag"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/Stack/">Stack</a>
-                    
-                  </span>
-                
-              </p>
-              
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
-              
-            </div>
-
-            
-              <!-- Comments -->
-              <div class="comments" id="comments">
-                
-                
-  <div id="gitalk-container"></div>
-  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.11.1/js/md5.min.js"></script>
-  <script type="text/javascript">
-    var gitalk = new Gitalk({
-      clientID: '0446fd982233fd70e38e',
-      clientSecret: '5b6294932c34fb8c09cbe0635d9e1143f5d75aa0',
-      repo: 'ChalkyDoge.github.io',
-      owner: 'ChalkyDoge',
-      admin: 'ChalkyDoge',
-      id: md5(location.pathname),
-      language: 'zh-CN',
-      perPage: 15,
-      pagerDirection: 'last',
-      createIssueManually: 'true',
-      distractionFreeMode: 'false'
-    });
-
-    gitalk.render('gitalk-container')
-  </script>
 
 
               </div>
-            
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc-start"></div>
-<div id="toc">
-  <p class="h5"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
-  <div id="tocbot"></div>
-</div>
-
-      </div>
-    
-  </div>
-</div>
-
-<!-- Custom -->
-
-
     
   </main>
 
@@ -380,57 +242,6 @@ private:
 
 
 
-  
-  <script  src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      var navHeight = $('#navbar').height();
-      var post = $('#post');
-      var toc = $('#toc');
-      var tocLimMax = post.offset().top + post.height() - navHeight;
-
-      $(window).scroll(function () {
-        var tocLimMin = $('#toc-start').offset().top - navHeight;
-        var scroH = document.body.scrollTop + document.documentElement.scrollTop;
-
-        if (tocLimMin <= scroH && scroH <= tocLimMax) {
-          toc.css({
-            'display': 'block',
-            'position': 'fixed',
-            'top': navHeight,
-          });
-        } else if (scroH <= tocLimMin) {
-          toc.css({
-            'position': '',
-            'top': '',
-          });
-        } else if (scroH > tocLimMax) {
-          toc.css('display', 'none');
-        }
-      });
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '.post-content',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        scrollSmooth: true,
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc > p').css('visibility', 'visible');
-      }
-      var offset = $('#board-ctn').css('margin-right')
-      $('#toc-ctn').css({
-        'right': offset
-      })
-    });
-  </script>
-
-
-
 
 
 
@@ -459,7 +270,7 @@ private:
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "栈实现队列&nbsp;",
+        "Tag - Stack&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

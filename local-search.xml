@@ -4,13 +4,55 @@
   
   
   <entry>
-    <title>LRU设计</title>
-    <link href="/2020/03/17/LRU%E8%AE%BE%E8%AE%A1/"/>
-    <url>/2020/03/17/LRU%E8%AE%BE%E8%AE%A1/</url>
+    <title>重排链表</title>
+    <link href="/2020/03/17/%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/"/>
+    <url>/2020/03/17/%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/</url>
     
     <content type="html"><![CDATA[]]></content>
     
     
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>链表的插入排序</title>
+    <link href="/2020/03/17/%E9%93%BE%E8%A1%A8%E7%9A%84%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/"/>
+    <url>/2020/03/17/%E9%93%BE%E8%A1%A8%E7%9A%84%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/</url>
+    
+    <content type="html"><![CDATA[<p>插入排序妙啊啊啊啊啊啊啊啊，我选择归并排序(逃)。</p><a id="more"></a><pre><code>&#x2F;** * Definition for singly-linked list. * struct ListNode { *     int val; *     ListNode *next; *     ListNode(int x) : val(x), next(NULL) {} * }; *&#x2F;class Solution {public:    ListNode* insertionSortList(ListNode* head) {       ListNode* dummy&#x3D;new ListNode(0);       ListNode* prev;       dummy-&gt;next&#x3D;head;       while(head&amp;&amp;head-&gt;next){           if(head-&gt;val&lt;&#x3D;head-&gt;next-&gt;val){               head&#x3D;head-&gt;next;               continue;           }           prev&#x3D;dummy;           while(prev-&gt;next-&gt;val&lt;head-&gt;next-&gt;val){               prev&#x3D;prev-&gt;next;           }           ListNode* curr&#x3D;head-&gt;next;           head-&gt;next&#x3D;curr-&gt;next;           curr-&gt;next&#x3D;prev-&gt;next;           prev-&gt;next&#x3D;curr;       }       return dummy-&gt;next;    }};</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Linked List</tag>
+      
+      <tag>Sorting</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>LRU设计</title>
+    <link href="/2020/03/17/LRU%E8%AE%BE%E8%AE%A1/"/>
+    <url>/2020/03/17/LRU%E8%AE%BE%E8%AE%A1/</url>
+    
+    <content type="html"><![CDATA[<p>LRU Cache</p><a id="more"></a><blockquote><p>运用你所掌握的数据结构，设计和实现一个  LRU (最近最少使用) 缓存机制。它应该支持以下操作： 获取数据 get 和 写入数据 put 。</p><p>获取数据 get(key) - 如果密钥 (key) 存在于缓存中，则获取密钥的值（总是正数），否则返回 -1。<br>写入数据 put(key, value) - 如果密钥不存在，则写入其数据值。当缓存容量达到上限时，它应该在写入新数据之前删除最久未使用的数据值，从而为新的数据值留出空间。</p><p>进阶:</p><p>你是否可以在 O(1) 时间复杂度内完成这两种操作？</p><p>示例:</p><p>LRUCache cache = new LRUCache( 2 /* 缓存容量 */ );</p><p>cache.put(1, 1);<br>cache.put(2, 2);<br>cache.get(1);       // 返回  1<br>cache.put(3, 3);    // 该操作会使得密钥 2 作废<br>cache.get(2);       // 返回 -1 (未找到)<br>cache.put(4, 4);    // 该操作会使得密钥 1 作废<br>cache.get(1);       // 返回 -1 (未找到)<br>cache.get(3);       // 返回  3<br>cache.get(4);       // 返回  4</p><p>来源：力扣（LeetCode）-146</p></blockquote><p>hash table+ list的结构<br>首先要在O(1)的时间查找，最直接的就是hash<br>接下来还需要O(1)的时间进行动态操作，就需要用到List的结构<br>综合起来就是一个类似有序字典的数据结构。<br>通过维护列表的长度代表缓存容量，桶结构中存放指向列表的迭代器(指针)<br>同时每次get操作都要相应的更新表首位置，更新状态。此时位于表末的元素就一定是最久没有访问的元素，从而将其弹出，再插入新元素。</p><pre><code>class LRUCache {public:    LRUCache(int capacity):cap(capacity) {    }        int get(int key) {        auto it&#x3D;m.find(key);        if(it&#x3D;&#x3D;m.end())            return -1;        int val&#x3D;it-&gt;second-&gt;second;        _list.erase(it-&gt;second);        _list.push_front(make_pair(key,val));        m[key]&#x3D;_list.begin();        return it-&gt;second-&gt;second;    }    void put(int key, int value) {        auto it&#x3D;m.find(key);        if(it!&#x3D;m.end()){            _list.erase(it-&gt;second);        }        _list.push_front(make_pair(key,value));        m[key]&#x3D;_list.begin();        if(_list.size()&gt;cap){            int key&#x3D;_list.back().first;            m.erase(key);            _list.pop_back();        }    }private:    unordered_map&lt;int,list&lt;pair&lt;int,int&gt;&gt;::iterator&gt; m;    list&lt;pair&lt;int,int&gt;&gt; _list;    int cap;};&#x2F;** * Your LRUCache object will be instantiated and called as such: * LRUCache* obj &#x3D; new LRUCache(capacity); * int param_1 &#x3D; obj-&gt;get(key); * obj-&gt;put(key,value); *&#x2F; </code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Hashing</tag>
+      
+      <tag>Designing</tag>
+      
+    </tags>
     
   </entry>
   
@@ -21,9 +63,15 @@
     <link href="/2020/03/17/%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/"/>
     <url>/2020/03/17/%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<pre><code>假象。</code></pre><a id="more"></a><p>一个栈就是普通的栈，再用一个栈转移元素用<br>当有元素入队了，压入普通的栈；<br>当有元素出队了，先把栈上除栈底以外的全部转移，把栈底元素返回并弹出<br>此后如果再出队，此时经刚刚的操作，另一个栈中元素顺序发生的奇妙的转变，直接调用pop就是队列顺序的出队，直到另一个栈空。<br>peek就是pop没有pop的操作😂😂😂</p><pre><code>class MyQueue {public:    &#x2F;** Initialize your data structure here. *&#x2F;    MyQueue() {    }        &#x2F;** Push element x to the back of queue. *&#x2F;    void push(int x) {        front.push(x);    }        &#x2F;** Removes the element from in front of queue and returns that element. *&#x2F;    int pop() {        if(rear.empty()){            while(!front.empty()){                rear.push(front.top());                front.pop();            }        }        int temp&#x3D;rear.top();        rear.pop();        return temp;    }        &#x2F;** Get the front element. *&#x2F;    int peek() {        if(rear.empty()){            while(!front.empty()){                rear.push(front.top());                front.pop();                            }        }        return rear.top();    }        &#x2F;** Returns whether the queue is empty. *&#x2F;    bool empty() {        return front.empty()&amp;&amp;rear.empty();    }private:    stack&lt;int&gt; front;    stack&lt;int&gt; rear;};&#x2F;** * Your MyQueue object will be instantiated and called as such: * MyQueue* obj &#x3D; new MyQueue(); * obj-&gt;push(x); * int param_2 &#x3D; obj-&gt;pop(); * int param_3 &#x3D; obj-&gt;peek(); * bool param_4 &#x3D; obj-&gt;empty(); *&#x2F;</code></pre>]]></content>
     
     
+    
+    <tags>
+      
+      <tag>Stack</tag>
+      
+    </tags>
     
   </entry>
   
@@ -34,7 +82,7 @@
     <link href="/2020/03/17/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%8B%E7%BC%A9/"/>
     <url>/2020/03/17/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%8B%E7%BC%A9/</url>
     
-    <content type="html"><![CDATA[<p>比较简单的每日一题~</p><a id="more"></a><pre><code>class Solution {public:    string compressString(string S) {        int len&#x3D;S.length();        string str;        for(int i&#x3D;0;i&lt;len;i++){            str+&#x3D;S[i];            int count&#x3D;1;            while(S[i]&#x3D;&#x3D;S[i+1]&amp;&amp;i&lt;len-1){                i++;                count++;            }            str+&#x3D;to_string(count);        }        int len1&#x3D;str.length();        if(len1&gt;&#x3D;len){            return S;        }        else            return str;    }};</code></pre>]]></content>
+    <content type="html"><![CDATA[<p>比较简单的每日一题~</p><a id="more"></a><p>数吧，没想到什么好办法QAQ</p><pre><code>class Solution {public:    string compressString(string S) {        int len&#x3D;S.length();        string str;        for(int i&#x3D;0;i&lt;len;i++){            str+&#x3D;S[i];            int count&#x3D;1;            while(S[i]&#x3D;&#x3D;S[i+1]&amp;&amp;i&lt;len-1){                i++;                count++;            }            str+&#x3D;to_string(count);        }        int len1&#x3D;str.length();        if(len1&gt;&#x3D;len){            return S;        }        else            return str;    }};</code></pre>]]></content>
     
     
     
@@ -53,7 +101,7 @@
     <link href="/2020/03/17/%E6%8B%BC%E5%86%99%E5%8D%95%E8%AF%8D/"/>
     <url>/2020/03/17/%E6%8B%BC%E5%86%99%E5%8D%95%E8%AF%8D/</url>
     
-    <content type="html"><![CDATA[<p>Brute Force…</p><a id="more"></a><pre><code>class Solution {public:    int countCharacters(vector&lt;string&gt;&amp; words, string chars) {        int res&#x3D;0;        unordered_map&lt;char,int&gt; table;        for(char c:chars){            table[c]++;        }        unordered_map&lt;char,int&gt; temp&#x3D;table;        for(string s:words){            int count&#x3D;0;            for(char d:s){                if(temp.find(d)!&#x3D;temp.end()&amp;&amp;temp[d]&gt;0){                    count++;                    temp[d]--;                    continue;                }                else{                    count&#x3D;0;                    break;                                    }            }            temp&#x3D;table;            res+&#x3D;count;        }        return res;    }};</code></pre>]]></content>
+    <content type="html"><![CDATA[<p>Brute Force…</p><a id="more"></a><p>直接散列表，快乐++<br>（其实这里只有26个字母，Dark不必哈希，只要维护一个数组😂<br>当然内存很爆炸啦😂😂😂😂😂</p><pre><code>class Solution {public:    int countCharacters(vector&lt;string&gt;&amp; words, string chars) {        int res&#x3D;0;        unordered_map&lt;char,int&gt; table;        for(char c:chars){            table[c]++;        }        unordered_map&lt;char,int&gt; temp&#x3D;table;        for(string s:words){            int count&#x3D;0;            for(char d:s){                if(temp.find(d)!&#x3D;temp.end()&amp;&amp;temp[d]&gt;0){                    count++;                    temp[d]--;                    continue;                }                else{                    count&#x3D;0;                    break;                                    }            }            temp&#x3D;table;            res+&#x3D;count;        }        return res;    }};</code></pre>]]></content>
     
     
     

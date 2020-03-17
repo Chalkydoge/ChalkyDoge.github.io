@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="Chalky Doge">
   <meta name="keywords" content="">
-  <title>栈实现队列 - CodingDoge</title>
+  <title>重排链表 - CodingDoge</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -123,7 +123,7 @@
               
                 <p class="mt-3 post-meta">
                   <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-                  Tuesday, March 17th 2020, 12:35 am
+                  Tuesday, March 17th 2020, 10:26 pm
                 </p>
               
 
@@ -132,7 +132,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    281 字
+                    0 字
                   </span>
                 
 
@@ -175,73 +175,12 @@
           <div class="post-content mx-auto" id="post">
             
             <div class="markdown-body">
-              <pre><code>假象。</code></pre><a id="more"></a>
-<p>一个栈就是普通的栈，再用一个栈转移元素用<br>当有元素入队了，压入普通的栈；<br>当有元素出队了，先把栈上除栈底以外的全部转移，把栈底元素返回并弹出<br>此后如果再出队，此时经刚刚的操作，另一个栈中元素顺序发生的奇妙的转变，直接调用pop就是队列顺序的出队，直到另一个栈空。<br>peek就是pop没有pop的操作😂😂😂</p>
-<pre><code>class MyQueue {
-public:
-    &#x2F;** Initialize your data structure here. *&#x2F;
-    MyQueue() {
-
-    }
-    
-    &#x2F;** Push element x to the back of queue. *&#x2F;
-    void push(int x) {
-        front.push(x);
-    }
-    
-    &#x2F;** Removes the element from in front of queue and returns that element. *&#x2F;
-    int pop() {
-        if(rear.empty()){
-            while(!front.empty()){
-                rear.push(front.top());
-                front.pop();
-            }
-        }
-        int temp&#x3D;rear.top();
-        rear.pop();
-        return temp;
-    }
-    
-    &#x2F;** Get the front element. *&#x2F;
-    int peek() {
-        if(rear.empty()){
-            while(!front.empty()){
-                rear.push(front.top());
-                front.pop();                
-            }
-        }
-        return rear.top();
-    }
-    
-    &#x2F;** Returns whether the queue is empty. *&#x2F;
-    bool empty() {
-        return front.empty()&amp;&amp;rear.empty();
-    }
-private:
-    stack&lt;int&gt; front;
-    stack&lt;int&gt; rear;
-};
-
-&#x2F;**
- * Your MyQueue object will be instantiated and called as such:
- * MyQueue* obj &#x3D; new MyQueue();
- * obj-&gt;push(x);
- * int param_2 &#x3D; obj-&gt;pop();
- * int param_3 &#x3D; obj-&gt;peek();
- * bool param_4 &#x3D; obj-&gt;empty();
- *&#x2F;</code></pre>
+              
             </div>
             <hr>
             <div>
               <p>
                 
-                
-                  <span>
-                <i class="iconfont icon-tag"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/Stack/">Stack</a>
-                    
-                  </span>
                 
               </p>
               
@@ -459,7 +398,7 @@ private:
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "栈实现队列&nbsp;",
+        "重排链表&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

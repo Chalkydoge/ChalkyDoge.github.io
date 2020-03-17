@@ -132,7 +132,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    0 字
+                    574 字
                   </span>
                 
 
@@ -140,7 +140,7 @@
                   
                   <span class="post-meta">
                       <i class="far fa-clock"></i>
-                      1 分钟
+                      2 分钟
                   </span>
                 
 
@@ -175,12 +175,74 @@
           <div class="post-content mx-auto" id="post">
             
             <div class="markdown-body">
-              
+              <p>LRU Cache</p>
+<a id="more"></a>
+<blockquote><p>运用你所掌握的数据结构，设计和实现一个  LRU (最近最少使用) 缓存机制。它应该支持以下操作： 获取数据 get 和 写入数据 put 。</p>
+<p>获取数据 get(key) - 如果密钥 (key) 存在于缓存中，则获取密钥的值（总是正数），否则返回 -1。<br>写入数据 put(key, value) - 如果密钥不存在，则写入其数据值。当缓存容量达到上限时，它应该在写入新数据之前删除最久未使用的数据值，从而为新的数据值留出空间。</p>
+<p>进阶:</p>
+<p>你是否可以在 O(1) 时间复杂度内完成这两种操作？</p>
+<p>示例:</p>
+<p>LRUCache cache = new LRUCache( 2 /* 缓存容量 */ );</p>
+<p>cache.put(1, 1);<br>cache.put(2, 2);<br>cache.get(1);       // 返回  1<br>cache.put(3, 3);    // 该操作会使得密钥 2 作废<br>cache.get(2);       // 返回 -1 (未找到)<br>cache.put(4, 4);    // 该操作会使得密钥 1 作废<br>cache.get(1);       // 返回 -1 (未找到)<br>cache.get(3);       // 返回  3<br>cache.get(4);       // 返回  4</p>
+<p>来源：力扣（LeetCode）-146</p>
+</blockquote>
+<p>hash table+ list的结构<br>首先要在O(1)的时间查找，最直接的就是hash<br>接下来还需要O(1)的时间进行动态操作，就需要用到List的结构<br>综合起来就是一个类似有序字典的数据结构。<br>通过维护列表的长度代表缓存容量，桶结构中存放指向列表的迭代器(指针)<br>同时每次get操作都要相应的更新表首位置，更新状态。此时位于表末的元素就一定是最久没有访问的元素，从而将其弹出，再插入新元素。</p>
+<pre><code>class LRUCache {
+public:
+    LRUCache(int capacity):cap(capacity) {
+    }
+    
+    int get(int key) {
+        auto it&#x3D;m.find(key);
+        if(it&#x3D;&#x3D;m.end())
+            return -1;
+        int val&#x3D;it-&gt;second-&gt;second;
+        _list.erase(it-&gt;second);
+        _list.push_front(make_pair(key,val));
+        m[key]&#x3D;_list.begin();
+        return it-&gt;second-&gt;second;
+    }
+    void put(int key, int value) {
+        auto it&#x3D;m.find(key);
+        if(it!&#x3D;m.end()){
+            _list.erase(it-&gt;second);
+        }
+        _list.push_front(make_pair(key,value));
+        m[key]&#x3D;_list.begin();
+        if(_list.size()&gt;cap){
+            int key&#x3D;_list.back().first;
+            m.erase(key);
+            _list.pop_back();
+        }
+    }
+private:
+    unordered_map&lt;int,list&lt;pair&lt;int,int&gt;&gt;::iterator&gt; m;
+    list&lt;pair&lt;int,int&gt;&gt; _list;
+    int cap;
+};
+
+&#x2F;**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache* obj &#x3D; new LRUCache(capacity);
+ * int param_1 &#x3D; obj-&gt;get(key);
+ * obj-&gt;put(key,value);
+ *&#x2F;
+ </code></pre>
+
             </div>
             <hr>
             <div>
               <p>
                 
+                
+                  <span>
+                <i class="iconfont icon-tag"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Hashing/">Hashing</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Designing/">Designing</a>
+                    
+                  </span>
                 
               </p>
               
