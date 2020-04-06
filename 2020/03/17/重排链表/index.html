@@ -98,6 +98,14 @@
             <a class="nav-link" href="/about/">About</a>
           </li>
         
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/example/">example</a>
+          </li>
+        
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
@@ -132,7 +140,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    0 字
+                    187 字
                   </span>
                 
 
@@ -175,12 +183,67 @@
           <div class="post-content mx-auto" id="post">
             
             <div class="markdown-body">
-              
+              <p>自己又变菜了<br>明明链表就那么几个花样：头节点，快慢指针，插入删除<br>写起来就BUG无限，Endless Bugs Most Beautiful</p>
+<a id="more"></a>
+<pre><code>&#x2F;**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ *&#x2F;
+class Solution {
+public:
+    void reorderList(ListNode* head) {
+        if(!head||!head-&gt;next)
+            return;
+        ListNode* slow&#x3D;head;
+        ListNode* fast&#x3D;head;
+        while(fast&amp;&amp;fast-&gt;next){
+            slow&#x3D;slow-&gt;next;
+            fast&#x3D;fast-&gt;next-&gt;next;
+        }
+        ListNode* reversed&#x3D;slow-&gt;next;
+        slow-&gt;next&#x3D;NULL;
+        reversed&#x3D;reverse(reversed);
+        ListNode* temp&#x3D;head;
+        while(temp&amp;&amp;reversed){
+            ListNode* p&#x3D;reversed;
+            reversed&#x3D;reversed-&gt;next;
+            ListNode* q&#x3D;temp-&gt;next;
+            p-&gt;next&#x3D;temp-&gt;next;
+            temp-&gt;next&#x3D;p;
+            
+            temp&#x3D;q;
+        }
+    }
+    ListNode* reverse(ListNode* head){
+        ListNode* prev&#x3D;NULL;
+        ListNode* curr&#x3D;head;
+        ListNode* temp;
+        while(curr){
+            temp&#x3D;curr-&gt;next;
+            curr-&gt;next&#x3D;prev;
+            prev&#x3D;curr;
+            curr&#x3D;temp;
+        }
+        return prev;
+    }
+};</code></pre>
+
             </div>
             <hr>
             <div>
               <p>
                 
+                
+                  <span>
+                <i class="iconfont icon-tag"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Linked-List/">Linked List</a>
+                    
+                  </span>
                 
               </p>
               

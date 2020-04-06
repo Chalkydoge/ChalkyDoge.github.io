@@ -4,9 +4,113 @@
   
   
   <entry>
-    <title>重排链表</title>
-    <link href="/2020/03/17/%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/"/>
-    <url>/2020/03/17/%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/</url>
+    <title>1111</title>
+    <link href="/2020/04/01/1111/"/>
+    <url>/2020/04/01/1111/</url>
+    
+    <content type="html"><![CDATA[<pre><code>2333333</code></pre>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>rooms</title>
+    <link href="/2020/03/31/rooms/"/>
+    <url>/2020/03/31/rooms/</url>
+    
+    <content type="html"><![CDATA[<pre><code>class Solution {public:    void dfs(int i,vector&lt;vector&lt;int&gt;&gt;&amp; rooms,vector&lt;bool&gt;&amp; visited,int &amp;cnt){        for(int j:rooms[i]){            if(!visited[j]){                visited[j]&#x3D;true;                cnt++;                dfs(j,rooms,visited,cnt);            }        }    }    bool canVisitAllRooms(vector&lt;vector&lt;int&gt;&gt;&amp; rooms) {        int n&#x3D;rooms.size();        if(n&#x3D;&#x3D;0)            return true;        vector&lt;bool&gt; visited(n,false);        int cnt&#x3D;0;        visited[0]&#x3D;true;        cnt++;        dfs(0,rooms,visited,cnt);        return cnt&#x3D;&#x3D;n;    }};</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Depth First Search</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>分割数组的最大值</title>
+    <link href="/2020/03/26/%E5%88%86%E5%89%B2%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC/"/>
+    <url>/2020/03/26/%E5%88%86%E5%89%B2%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC/</url>
+    
+    <content type="html"><![CDATA[<pre><code>class Solution {public:    int splitArray(vector&lt;int&gt;&amp; nums, int m) {        long long left&#x3D;0,right&#x3D;0;        for(int num:nums){            left&#x3D;max(left,static_cast&lt;long long&gt;(num));            right+&#x3D;num;        }        &#x2F;&#x2F;[max(nums[0],nums[1],...),sum(nums[0],nums[1],...)]--&gt;subarray range        &#x2F;&#x2F;currsum++  need too much-&gt;curr&lt;res----&gt;left++        while(left-right){            long long mid&#x3D;(left+right)&#x2F;2,need&#x3D;1,curr&#x3D;0;            for(int num:nums){                if(curr+num&gt;mid){                    need++;                    curr&#x3D;0;                }                curr+&#x3D;num;            }            if(need&gt;m)                left&#x3D;mid+1;            else                right&#x3D;mid;        }        return left;    }};</code></pre><pre><code>class Solution {public:    int splitArray(vector&lt;int&gt;&amp; nums, int m) {        int n&#x3D;nums.size();        vector&lt;vector&lt;long long&gt; &gt; dp(n+1,vector&lt;long long&gt;(m+1,INT_MAX));        vector&lt;long long&gt; sub(n+1,0);        for(int i&#x3D;0;i&lt;n;i++){            sub[i+1]&#x3D;sub[i]+nums[i];        }        dp[0][0]&#x3D;0;        for(int i&#x3D;1;i&lt;&#x3D;n;i++){            for(int j&#x3D;1;j&lt;&#x3D;m;j++){                for(int k&#x3D;0;k&lt;i;k++){                    dp[i][j]&#x3D;min(dp[i][j],max(dp[k][j-1],sub[i]-sub[k]));                }            }        }        return dp[n][m];    }};</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>DP</tag>
+      
+      <tag>Greedy</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>maximum-rectangle</title>
+    <link href="/2020/03/25/maximum-rectangle/"/>
+    <url>/2020/03/25/maximum-rectangle/</url>
+    
+    <content type="html"><![CDATA[<p>很好的一道题。。。最好与84题一起食用</p><a id="more"></a><ol><li>暴力法：枚举每个可能的矩形位置X 显然过不去的<br>复杂度：设输入矩阵的行数为m，列数为n -&gt;O(m^3*n^3)  </li></ol><p>2.对每一列的最大宽度作DP，再遍历求解，DP表内垂直相邻的方向上可计算相应对应的矩形面积，其对应公共区域的面积为两个方向上最大宽度的最小值<em>高度<br>时间复杂度：O(mn)</em>O(n)=O(m*n^2) 空间复杂度：O(mn)</p><ol start="3"><li>对于以上方法的优化：计算最大宽度的优化，作自顶向下的分割<br>每一次对一整列求取最大高度与最大面积，不断更新每一列的最大高度，直接调用84题中的单调栈解法，就可以得出相应的行中最大的矩形面积() O(mn),O(n)<pre><code>class Solution {public:    int largestRectangleArea(vector&lt;int&gt;&amp; heights){        int maxArea&#x3D;0;        stack&lt;int&gt; s;        int i&#x3D;0;        while(i&lt;heights.size()){            if(s.empty())                s.push(i++);            else{                int temp&#x3D;s.top();                if(heights[i]&gt;&#x3D;heights[temp]){                    s.push(i);                    i++;                }                else{&#x2F;&#x2F;单调栈，保证每次操作时栈内保证高度不减                &#x2F;&#x2F;若入栈元素高度小于栈顶元素，则出现了中间高两端低的情况                    &#x2F;&#x2F;保存栈顶高度                    int height&#x3D;heights[temp];                    s.pop();                    &#x2F;&#x2F;左边第一个小于当前柱子的下标                    int LeftLessMin&#x3D;s.empty()?-1:s.top();                    &#x2F;&#x2F;右边第一个小于当前柱子的下标                    int RightLessMin&#x3D;i;                    &#x2F;&#x2F;计算面积                    int area &#x3D;(RightLessMin-LeftLessMin-1)*height;                    maxArea&#x3D;max(area, maxArea);                }            }        }        while(!s.empty()){            int height&#x3D;heights[s.top()];            s.pop();            &#x2F;&#x2F;左边第一个小于当前柱子的下标            int LeftLessMin&#x3D;s.empty()?-1:s.top();            &#x2F;&#x2F;右边没有小于当前高度的柱子，所以赋值为数组的长度便于计算            int RightLessMin&#x3D;heights.size();            int area&#x3D;(RightLessMin-LeftLessMin-1)*height;            maxArea&#x3D;max(area,maxArea);        }        return maxArea;    }    int maximalRectangle(vector&lt;vector&lt;char&gt;&gt;&amp; matrix) {        if(!matrix.size())            return 0;&#x2F;&#x2F;                vector&lt;int&gt; heights(matrix[0].size(),0);        int maxArea&#x3D;0;        for(int i&#x3D;0;i&lt;matrix.size();i++){            for(int j&#x3D;0;j&lt;matrix[0].size();j++){                if(matrix[i][j]&#x3D;&#x3D;&#39;1&#39;){                    heights[j]+&#x3D;1;                }                else                    heights[j]&#x3D;0;            }            maxArea&#x3D;max(maxArea,largestRectangleArea(heights));        }        return maxArea;    }};</code></pre></li></ol>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>DP</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>单词拆分</title>
+    <link href="/2020/03/24/%E5%8D%95%E8%AF%8D%E6%8B%86%E5%88%86/"/>
+    <url>/2020/03/24/%E5%8D%95%E8%AF%8D%E6%8B%86%E5%88%86/</url>
+    
+    <content type="html"><![CDATA[<p>dp[i] means whether the substr[0,i] can be broke down to words<br>dp[i]=true so it is possible, else it’s impossible.<br>do the process with each of the possible position, till the end.</p><pre><code>class Solution {public:    bool wordBreak(string s, vector&lt;string&gt;&amp; wordDict) {        int m&#x3D;s.length();        bool dp[m+1];        memset(dp,0,sizeof(dp));        dp[0]&#x3D;true;        unordered_set&lt;string&gt; dict(wordDict.begin(),wordDict.end());        int getMax&#x3D;0;        for(string s:wordDict){            getMax&#x3D;max(getMax,(int)s.length());        }        for(int i&#x3D;1;i&lt;&#x3D;m;i++){            for(int j&#x3D;max(0,i-getMax);j&lt;i;j++){                if(dp[j]&amp;&amp;dict.find(s.substr(j,i-j))!&#x3D;dict.end()){                    dp[i]&#x3D;true;                    break;                }            }        }        return dp[m];    }};</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>DP</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>3n块披萨</title>
+    <link href="/2020/03/23/3n%E5%9D%97%E6%8A%AB%E8%90%A8/"/>
+    <url>/2020/03/23/3n%E5%9D%97%E6%8A%AB%E8%90%A8/</url>
+    
+    <content type="html"><![CDATA[<p>区间DP+2n操作<br>{}<br>//dp[l][r]=&gt;maxsize after taking all from left-&gt;right<br>//dp[l1][r2]=dp[l1][r1]+dp[l2][r2]—-&gt;l2==r1<br>//dp[l+1][mid]+slices[mid]+dp[mid+1][r-1]=&gt;dp[l][r]<br>//ring to list by double the size</p><p>class Solution {<br>    int dp[550<em>3][550</em>3];<br>public:<br>    int maxSizeSlices(vector<int>&amp; slices) {<br>        int n=slices.size();<br>        memset(dp,-1,sizeof(dp));<br>        for(int i=0;i&lt;2<em>n;i++){<br>            dp[i][i+2]=slices[(i+1)%n];//double the size to break the ring<br>        }<br>        for(int len=3;len&lt;n;len++){<br>            if(len%3!=2)<br>                continue;<br>            for(int left=0;left&lt;2</em>n;left++){<br>                int right=left+len;<br>                if(right&gt;=2*n)<br>                    continue;<br>                for(int mid=left+1;mid&lt;right;mid++){<br>                    if((mid-left-1)%3!=0)<br>                        continue;<br>                    if((right-mid-1)%3!=0)<br>                        continue;<br>                    int curr=slices[mid%n];<br>                    if(mid!=left+1){<br>                        if(dp[left+1][mid-1]==-1)<br>                            continue;<br>                        curr+=dp[left+1][mid-1];<br>                    }<br>                    if(mid!=right-1){<br>                        if(dp[mid+1][right-1]==-1)<br>                            continue;<br>                        curr+=dp[mid+1][right-1];<br>                    }<br>                    dp[left][right]=max(dp[left][right],curr);<br>                }<br>                for(int mid=left;mid&lt;right;mid++){<br>                    if(dp[left][mid]==-1)<br>                        continue;<br>                    if(dp[mid+1][right]==-1)<br>                        continue;<br>                    dp[left][right]=max(dp[left][right],dp[left][mid]+dp[mid+1][right]);<br>                }<br>            }<br>        }<br>        int res=-1;<br>        for(int i=0;i&lt;n;i++){<br>            if(dp[i][i+n-1]!=-1)<br>                res=max(res,dp[i][i+n-1]);<br>        }<br>        return res;<br>    }<br>};<br>{}</int></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>检查有效路径</title>
+    <link href="/2020/03/22/%E6%A3%80%E6%9F%A5%E6%9C%89%E6%95%88%E8%B7%AF%E5%BE%84/"/>
+    <url>/2020/03/22/%E6%A3%80%E6%9F%A5%E6%9C%89%E6%95%88%E8%B7%AF%E5%BE%84/</url>
     
     <content type="html"><![CDATA[]]></content>
     
@@ -17,11 +121,239 @@
   
   
   <entry>
+    <title>四因子</title>
+    <link href="/2020/03/22/%E5%9B%9B%E5%9B%A0%E5%AD%90/"/>
+    <url>/2020/03/22/%E5%9B%9B%E5%9B%A0%E5%AD%90/</url>
+    
+    <content type="html"><![CDATA[<pre><code>class Solution {public:    int sumFourDivisors(vector&lt;int&gt;&amp; nums) {        int res&#x3D;0;        for(int i:nums){            int count&#x3D;0;            int sum&#x3D;0;            for(int k&#x3D;1;k*k&lt;&#x3D;i;k++){                if(i%k&#x3D;&#x3D;0){                    if(k*k&#x3D;&#x3D;i){                        count++;                        sum+&#x3D;k;                    }                    else{                        count+&#x3D;2;                        sum&#x3D;sum+k+i&#x2F;k;                       }                }                if(count&gt;4){                    break;                    sum&#x3D;0;                }               }            if(count&#x3D;&#x3D;4)                res+&#x3D;sum;        }        return res;    }};</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Math</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>最长快乐前缀</title>
+    <link href="/2020/03/22/%E6%9C%80%E9%95%BF%E5%BF%AB%E4%B9%90%E5%89%8D%E7%BC%80/"/>
+    <url>/2020/03/22/%E6%9C%80%E9%95%BF%E5%BF%AB%E4%B9%90%E5%89%8D%E7%BC%80/</url>
+    
+    <content type="html"><![CDATA[<p>我裂开了,…我不会快乐了</p><a id="more"></a><p>KMP表里求的是真前缀，真后缀相等的最大长度！！！<br>稍做改动把整个字符串的前后匹配位置值加入，再直接取文本字符串从这个位置到末尾的子串就行了！！！</p><pre><code>class Solution {public:    string longestPrefix(string s) {        int m&#x3D;s.length();        int i&#x3D;0,j&#x3D;-1;        int *next&#x3D;new int[m+1];        next[0]&#x3D;-1;        while(i&lt;&#x3D;m-1){            if(j&lt;0||s[i]&#x3D;&#x3D;s[j]){                i++;j++;                next[i]&#x3D;j;            }            else                j&#x3D;next[j];        }        cout&lt;&lt;next[m];        return s.substr(m-next[m],next[m]);    }};</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>String</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>安排电影院座位</title>
+    <link href="/2020/03/22/%E5%AE%89%E6%8E%92%E7%94%B5%E5%BD%B1%E9%99%A2%E5%BA%A7%E4%BD%8D/"/>
+    <url>/2020/03/22/%E5%AE%89%E6%8E%92%E7%94%B5%E5%BD%B1%E9%99%A2%E5%BA%A7%E4%BD%8D/</url>
+    
+    <content type="html"><![CDATA[<p>{}<br>class Solution {<br>public:<br>    int cnt=0;<br>    map&lt;int,int&gt; id;<br>    vector<int> r[10010];<br>    int maxNumberOfFamilies(int n, vector&lt;vector<int>&gt;&amp; reservedSeats) {<br>        for(int i=0;i&lt;reservedSeats.size();++i)<br>        {<br>            vector<int> a=reservedSeats[i];<br>            if(id[a[0]]==0)id[a[0]]=++cnt;<br>            r[id[a[0]]].push_back(a[1]);<br>        }<br>        int ans=0;<br>        for(int i=1;i&lt;=cnt;++i)<br>        {<br>            bool c1=1,c2=1,c3=1;<br>            for(int j=0;j&lt;r[i].size();++j)<br>            {<br>                if(r[i][j]==2)c1=0;<br>                if(r[i][j]==3)c1=0;<br>                if(r[i][j]==4)c1=c2=0;<br>                if(r[i][j]==5)c1=c2=0;<br>                if(r[i][j]==6)c3=c2=0;<br>                if(r[i][j]==7)c3=c2=0;<br>                if(r[i][j]==8)c3=0;<br>                if(r[i][j]==9)c3=0;<br>            }<br>            if(c1&amp;&amp;c3){ans+=2;continue;}<br>            if(c1 || c2 || c3)ans++;<br>        }<br>        return (long long)(n-cnt)*2+ans;<br>    }<br>};<br>{}</int></int></int></p><p>{}<br>class Solution {<br>    public int maxSizeSlices(int[] slices) {<br>        int length = slices.length;<br>        int picks = length / 3;<br>        // dp[i][j][s] 表示前i块披萨，拿了j块，最大值是多少，s表示第i块披萨是要还是不要<br>        int[][][] dp = new int[length][picks + 1][2];</p><pre><code>    // 分第一块要和第一块不要两种情况    int result = 0;    // 第一块要    dp[0][1][1] = slices[0];    for (int i = 1; i &lt; length; ++i) {        if (i == length - 1) {            // 对于最后一块pisa            // 第一块要了，那么它必须不能要            continue;        }        for (int j = 1; j &lt;= picks; ++j) {            // 对于第二块，只能选择不要            if (i == 1) {                dp[i][j][0] = dp[i - 1][j][1];                continue;            }            // 对于第i块披萨，如果要，那么最大值为i-1不要，拿了j-1块            dp[i][j][1] = dp[i - 1][j - 1][0] + slices[i];            // 如果不要，那么最大值为i-1不要，拿了j块，或i-1要，拿了j块            dp[i][j][0] = Math.max(dp[i - 1][j][0], dp[i - 1][j][1]);        }        result = Math.max(result, Math.max(dp[i][picks][1], dp[i][picks][0]));    }    // 第一块不要    dp[0][1][1] = 0;    // 第二块可以要，也可以不要，所以不需要特殊处理    for (int i = 1; i &lt; length; ++i) {        for (int j = 1; j &lt;= picks; ++j) {            // 对于第i块披萨，如果要，那么最大值为i-1不要，拿了j-1块            dp[i][j][1] = dp[i - 1][j - 1][0] + slices[i];            // 如果不要，那么最大值为i-1不要，拿了j块，或i-1要，拿了j块            dp[i][j][0] = Math.max(dp[i - 1][j][0], dp[i - 1][j][1]);        }        result = Math.max(result, Math.max(dp[i][picks][1], dp[i][picks][0]));    }    return result;}</code></pre><p>}<br>{}</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>朋友圈</title>
+    <link href="/2020/03/20/%E6%9C%8B%E5%8F%8B%E5%9C%88/"/>
+    <url>/2020/03/20/%E6%9C%8B%E5%8F%8B%E5%9C%88/</url>
+    
+    <content type="html"><![CDATA[<a id="more"></a><pre><code>class UnionFind{    private:        int Count;        vector&lt;int&gt; parent;        vector&lt;int&gt; size;    public:        UnionFind(int n){            this-&gt;Count&#x3D;n;            for(int i&#x3D;0;i&lt;n;i++){                parent.push_back(i);                size.push_back(1);            }        }        int find(int p){            while(p!&#x3D;parent[p]){                parent[p]&#x3D;parent[parent[p]];                p&#x3D;parent[p];            }            return p;        }        void Union(int p,int q){            int rootP&#x3D;find(p);            int rootQ&#x3D;find(q);            if(connected(p,q))    return;            if(size[rootP]&gt;size[rootQ]){                parent[rootQ]&#x3D;rootP;                size[rootP]+&#x3D;size[rootQ];            }            else{                parent[rootP]&#x3D;rootQ;                size[rootQ]+&#x3D;size[rootP];            }            Count--;        }        bool connected(int p,int q){            int rootP&#x3D;find(p);            int rootQ&#x3D;find(q);            return rootP&#x3D;&#x3D;rootQ;        }        int count(){return Count;}};class Solution {   public:    int findCircleNum(vector&lt;vector&lt;int&gt;&gt;&amp; M) {        int row&#x3D;M.size();        int col&#x3D;M[0].size();        UnionFind A(row);        for(int i&#x3D;0;i&lt;row;i++){            for(int j&#x3D;0;j&lt;col;j++){                if(M[i][j]&#x3D;&#x3D;1){                    A.Union(i,j);                }            }        }        return A.count();    }};</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Union Find</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>寻找峰值</title>
+    <link href="/2020/03/20/%E5%AF%BB%E6%89%BE%E5%B3%B0%E5%80%BC/"/>
+    <url>/2020/03/20/%E5%AF%BB%E6%89%BE%E5%B3%B0%E5%80%BC/</url>
+    
+    <content type="html"><![CDATA[<a id="more"></a><pre><code>class Solution {public:    int findPeakElement(vector&lt;int&gt;&amp; nums) {        int l&#x3D;0,r&#x3D;nums.size()-1;        while(l&lt;r){            int mi&#x3D;((r-l)&gt;&gt;1)+l;            if(nums[mi]&gt;nums[mi+1]){                r&#x3D;mi;            }            else{                l&#x3D;mi+1;            }        }        return l;    }};</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Binary Search</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>最小的k个数</title>
+    <link href="/2020/03/20/%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0/"/>
+    <url>/2020/03/20/%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0/</url>
+    
+    <content type="html"><![CDATA[<pre><code>class Solution {public:    vector&lt;int&gt; getLeastNumbers(vector&lt;int&gt;&amp; arr, int k) {        priority_queue&lt;int,vector&lt;int&gt;,less&lt;int&gt; &gt; pq;        int size&#x3D;arr.size();        if(k&gt;size||k&#x3D;&#x3D;0)            return {};        for(int i&#x3D;0;i&lt;k;i++){            pq.push(arr[i]);        }        for(int i&#x3D;k;i&lt;size;i++){            int temp&#x3D;pq.top();            if(temp&gt;arr[i]){                pq.pop();                pq.push(arr[i]);            }        }        vector&lt;int&gt; res;        while(!pq.empty()){            res.push_back(pq.top());            pq.pop();        }        return res;    }};</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Array</tag>
+      
+      <tag>Priority Queue</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>编辑距离</title>
+    <link href="/2020/03/19/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/"/>
+    <url>/2020/03/19/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/</url>
+    
+    <content type="html"><![CDATA[<p>非常有趣的一道题</p><a id="more"></a><pre><code>class Solution {public:    int minDistance(string word1, string word2) {        int m&#x3D;word1.length();        int n&#x3D;word2.length();        int dp[m+1][n+1];        for(int i&#x3D;0;i&lt;m+1;i++){            dp[i][0]&#x3D;i;&#x2F;&#x2F;i-&gt;0需要i步操作        }        for(int j&#x3D;0;j&lt;n+1;j++){            dp[0][j]&#x3D;j;&#x2F;&#x2F;0-&gt;j需要j步操作        }        for(int i&#x3D;1;i&lt;m+1;i++){            for(int j&#x3D;1;j&lt;n+1;j++){                if(word1[i-1]&#x3D;&#x3D;word2[j-1]){                    dp[i][j]&#x3D;dp[i-1][j-1];&#x2F;&#x2F;如果原字符串中S1第i个与S2第j个相同，则不需要作任何操作                }                else{                    dp[i][j]&#x3D;1+min(dp[i-1][j],min(dp[i-1][j-1],dp[i][j-1]));&#x2F;&#x2F;否则从插入，替换，删除中选取代价最小的并更新                }            }        }        return dp[m][n];    }};</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Dynamic Programming</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>最小覆盖子串</title>
+    <link href="/2020/03/19/%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/"/>
+    <url>/2020/03/19/%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/</url>
+    
+    <content type="html"><![CDATA[<p>滑动窗口。。。</p><a id="more"></a><pre><code>怎么说呢，这题就是很恶心的那种🤢一个简单明了的思路就是维护这样一个窗口，固定一个左端，右端可以不断地扩展。class Solution {public:    string minWindow(string s, string t) {        if(s.size()&lt;t.size())            return &quot;&quot;;        int sFreq[64]&#x3D;{0};        int tFreq[64]&#x3D;{0};        for(int i&#x3D;0;i&lt;t.size();i++){            tFreq[t[i]-&#39;A&#39;]++;        }        int left&#x3D;0;        int right&#x3D;-1;        int border[2]&#x3D;{-1,s.size()-1};        while(left&lt;&#x3D;s.size()-t.size()){            if(right-left+1&lt;t.size()){                if(right+1&lt;s.size()){                    sFreq[s[++right]-&#39;A&#39;]++;                    continue;                }                else                    break;            }            int i&#x3D;0;            while(i&lt;64){                if(sFreq[i]&lt;tFreq[i])                    break;                i++;            }            if(i&lt;64){                if(right+1&lt;s.size())                    sFreq[s[++right]-&#39;A&#39;]++;                else                    break;            }            else{                if(right-left+1&#x3D;&#x3D;t.size())                    return string(s.begin()+left,s.begin()+right+1);                else{                    if(right-left&lt;border[1]-border[0]){                        border[0]&#x3D;left;                        border[1]&#x3D;right;                    }                    sFreq[s[left++]-&#39;A&#39;]--;                }                }        }        return border[0]&#x3D;&#x3D;-1?&quot;&quot;:string(s.begin()+border[0],s.begin()+border[1]+1);    }};</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>String</tag>
+      
+      <tag>Sliding Window</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>路径总和III</title>
+    <link href="/2020/03/18/%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8CIII/"/>
+    <url>/2020/03/18/%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8CIII/</url>
+    
+    <content type="html"><![CDATA[<pre><code>&#x2F;** * Definition for a binary tree node. * struct TreeNode { *     int val; *     TreeNode *left; *     TreeNode *right; *     TreeNode(int x) : val(x), left(NULL), right(NULL) {} * }; *&#x2F;class Solution {    unordered_map&lt;int,int&gt; count;public:    int pathSum(TreeNode* root,int sum) {        count[0]&#x3D;1;        return prefix_sum(root,sum,0);    }    int prefix_sum(TreeNode* root,int sum,int prefix){        if(!root)            return 0;        int res&#x3D;0;        prefix+&#x3D;root-&gt;val;        res+&#x3D;count[prefix-sum];        count[prefix]++;        res+&#x3D;prefix_sum(root-&gt;left,sum,prefix)+prefix_sum(root-&gt;right,sum,prefix);        count[prefix]--;        return res;    }};</code></pre><p>双重递归：每一个节点向下的递归中嵌套从该节点出发向下探索路径的递归。<br>采用更好理解的前缀法：前缀是到达该节点的路径上所有节点的数值总和。<br>所以，A节点处发现前缀为prefix，如果要找到符合条件的路径就意味着B处的前缀应该是prefix-sum，从而有了上述的算法是，把这一点之前的路径先进行计算，并递归考察向下递归的可能，回溯时注意要将出现prefix前缀的次数进行修改。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Binary Tree</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>路径总和II</title>
+    <link href="/2020/03/18/%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8CII/"/>
+    <url>/2020/03/18/%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8CII/</url>
+    
+    <content type="html"><![CDATA[<pre><code>    路</code></pre><a id="more"></a><pre><code>&#x2F;** * Definition for a binary tree node. * struct TreeNode { *     int val; *     TreeNode *left; *     TreeNode *right; *     TreeNode(int x) : val(x), left(NULL), right(NULL) {} * }; *&#x2F;class Solution {    vector&lt;vector&lt;int&gt;&gt; res;public:    vector&lt;vector&lt;int&gt;&gt; pathSum(TreeNode* root, int sum) {        if(!root)            return res;        vector&lt;int&gt; path;        travToLeaf(root,path,sum);        return res;    }    void travToLeaf(TreeNode* root,vector&lt;int&gt; path,int sum){        if(!root-&gt;left&amp;&amp;!root-&gt;right){            path.push_back(root-&gt;val);            if(add(path)&#x3D;&#x3D;sum){                res.push_back(path);            }            return;        }        else if(root-&gt;left&amp;&amp;root-&gt;right){            path.push_back(root-&gt;val);            travToLeaf(root-&gt;left,path,sum);            travToLeaf(root-&gt;right,path,sum);        }        else if(root-&gt;left){            path.push_back(root-&gt;val);            travToLeaf(root-&gt;left,path,sum);        }        else{            path.push_back(root-&gt;val);            travToLeaf(root-&gt;right,path,sum);        }    }    inline int add(vector&lt;int&gt; path){        int sum&#x3D;0;        for(int i:path)            sum+&#x3D;i;        return sum;    }};</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Binary Tree</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>矩形重叠</title>
+    <link href="/2020/03/18/%E7%9F%A9%E5%BD%A2%E9%87%8D%E5%8F%A0/"/>
+    <url>/2020/03/18/%E7%9F%A9%E5%BD%A2%E9%87%8D%E5%8F%A0/</url>
+    
+    <content type="html"><![CDATA[<hr><a id="more"></a><pre><code>class Solution {public:    bool isRectangleOverlap(vector&lt;int&gt;&amp; rec1, vector&lt;int&gt;&amp; rec2) {        int x11&#x3D;rec1[0];        int y11&#x3D;rec1[1];        int x21&#x3D;rec1[2];        int y21&#x3D;rec1[3];        bool out&#x3D;((rec2[0]&gt;&#x3D;x21)||(rec2[2]&lt;&#x3D;x11))||((rec2[1]&gt;&#x3D;y21)||(rec2[3]&lt;&#x3D;y11));        return !out;    }};</code></pre><p>就酱，数学问题，可以更加简化-&gt;1行代码</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Brute Force</tag>
+      
+      <tag>Math</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>重排链表</title>
+    <link href="/2020/03/17/%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/"/>
+    <url>/2020/03/17/%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/</url>
+    
+    <content type="html"><![CDATA[<p>自己又变菜了<br>明明链表就那么几个花样：头节点，快慢指针，插入删除<br>写起来就BUG无限，Endless Bugs Most Beautiful</p><a id="more"></a><pre><code>&#x2F;** * Definition for singly-linked list. * struct ListNode { *     int val; *     ListNode *next; *     ListNode(int x) : val(x), next(NULL) {} * }; *&#x2F;class Solution {public:    void reorderList(ListNode* head) {        if(!head||!head-&gt;next)            return;        ListNode* slow&#x3D;head;        ListNode* fast&#x3D;head;        while(fast&amp;&amp;fast-&gt;next){            slow&#x3D;slow-&gt;next;            fast&#x3D;fast-&gt;next-&gt;next;        }        ListNode* reversed&#x3D;slow-&gt;next;        slow-&gt;next&#x3D;NULL;        reversed&#x3D;reverse(reversed);        ListNode* temp&#x3D;head;        while(temp&amp;&amp;reversed){            ListNode* p&#x3D;reversed;            reversed&#x3D;reversed-&gt;next;            ListNode* q&#x3D;temp-&gt;next;            p-&gt;next&#x3D;temp-&gt;next;            temp-&gt;next&#x3D;p;                        temp&#x3D;q;        }    }    ListNode* reverse(ListNode* head){        ListNode* prev&#x3D;NULL;        ListNode* curr&#x3D;head;        ListNode* temp;        while(curr){            temp&#x3D;curr-&gt;next;            curr-&gt;next&#x3D;prev;            prev&#x3D;curr;            curr&#x3D;temp;        }        return prev;    }};</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Linked List</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>链表的插入排序</title>
     <link href="/2020/03/17/%E9%93%BE%E8%A1%A8%E7%9A%84%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/"/>
     <url>/2020/03/17/%E9%93%BE%E8%A1%A8%E7%9A%84%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/</url>
     
-    <content type="html"><![CDATA[<p>插入排序妙啊啊啊啊啊啊啊啊，我选择归并排序(逃)。</p><a id="more"></a><pre><code>&#x2F;** * Definition for singly-linked list. * struct ListNode { *     int val; *     ListNode *next; *     ListNode(int x) : val(x), next(NULL) {} * }; *&#x2F;class Solution {public:    ListNode* insertionSortList(ListNode* head) {       ListNode* dummy&#x3D;new ListNode(0);       ListNode* prev;       dummy-&gt;next&#x3D;head;       while(head&amp;&amp;head-&gt;next){           if(head-&gt;val&lt;&#x3D;head-&gt;next-&gt;val){               head&#x3D;head-&gt;next;               continue;           }           prev&#x3D;dummy;           while(prev-&gt;next-&gt;val&lt;head-&gt;next-&gt;val){               prev&#x3D;prev-&gt;next;           }           ListNode* curr&#x3D;head-&gt;next;           head-&gt;next&#x3D;curr-&gt;next;           curr-&gt;next&#x3D;prev-&gt;next;           prev-&gt;next&#x3D;curr;       }       return dummy-&gt;next;    }};</code></pre>]]></content>
+    <content type="html"><![CDATA[<p>插入排序妙啊啊啊啊啊啊啊啊，我选择归并排序(逃)。</p><a id="more"></a><pre><code>&#x2F;** * Definition for singly-linked list. * struct ListNode { *     int val; *     ListNode *next; *     ListNode(int x) : val(x), next(NULL) {} * }; *&#x2F;class Solution {public:    ListNode* insertionSortList(ListNode* head) {       ListNode* dummy&#x3D;new ListNode(0);       ListNode* prev;       dummy-&gt;next&#x3D;head;       while(head&amp;&amp;head-&gt;next){           if(head-&gt;val&lt;&#x3D;head-&gt;next-&gt;val){               head&#x3D;head-&gt;next;               continue;           }           prev&#x3D;dummy;           while(prev-&gt;next-&gt;val&lt;head-&gt;next-&gt;val){               prev&#x3D;prev-&gt;next;           }           ListNode* curr&#x3D;head-&gt;next;           head-&gt;next&#x3D;curr-&gt;next;           curr-&gt;next&#x3D;prev-&gt;next;           prev-&gt;next&#x3D;curr;       }       return dummy-&gt;next;    }};</code></pre><ol><li><p>确定已排序区域，用一个指针维护端点（这里用head）</p></li><li><p>找到已排序区域的 下一个元素（就是第一个未排序的元素）==head-&gt;next</p></li><li><p>找到这个元素在排序区域内的位置，就是用prev来确定</p></li><li><p>将该元素插入这个位置，移动排序区域的位置（head）</p></li><li><p>一遍又一遍的重复这个操作,直到最后一个元素也被排序</p></li></ol>]]></content>
     
     
     
@@ -164,7 +496,7 @@
     <link href="/2020/03/14/%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/"/>
     <url>/2020/03/14/%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/</url>
     
-    <content type="html"><![CDATA[<p>试试看并查集的方法：</p><a id="more"></a><h3 id="噔-噔-咚"><a href="#噔-噔-咚" class="headerlink" title="噔  噔  咚"></a>噔  噔  咚</h3><pre><code>class UnionFind{    private:        int Count;        vector&lt;int&gt; parent;        vector&lt;int&gt; size;    public:        UnionFind(int n){            this-&gt;Count&#x3D;n;            for(int i&#x3D;0;i&lt;n;i++){                parent.push_back(i);                size.push_back(1);            }        }        int find(int p){            while(p!&#x3D;parent[p]){                parent[p]&#x3D;parent[parent[p]];                p&#x3D;parent[p];            }            return p;        }        void Union(int p,int q){            int rootP&#x3D;find(p);            int rootQ&#x3D;find(q);            if(connected(p,q))    return;            if(size[rootP]&gt;size[rootQ]){                parent[rootQ]&#x3D;rootP;                size[rootP]+&#x3D;size[rootQ];            }            else{                parent[rootP]&#x3D;rootQ;                size[rootQ]+&#x3D;size[rootP];            }            Count--;        }        bool connected(int p,int q){            int rootP&#x3D;find(p);            int rootQ&#x3D;find(q);            return rootP&#x3D;&#x3D;rootQ;        }        int count(){return Count;}};class Solution {public:    int numIslands(vector&lt;vector&lt;char&gt;&gt;&amp; grid) {        int row&#x3D;grid.size();        if(row&#x3D;&#x3D;0)            return 0;        int col&#x3D;grid[0].size();        if(col&#x3D;&#x3D;0)            return 0;        int n&#x3D;row*col;        UnionFind AA(n+1);        int dx[2]&#x3D;{1,0};        int dy[2]&#x3D;{0,-1};        for(int i&#x3D;0;i&lt;n;i++){            int x&#x3D;i&#x2F;col;            int y&#x3D;i%col;            if(grid[x][y]&#x3D;&#x3D;&#39;1&#39;){                for(int j&#x3D;0;j&lt;2;j++){                    int xx&#x3D;x+dx[j];                    int yy&#x3D;y+dy[j];                    if(xx&gt;&#x3D;0&amp;&amp;xx&lt;row&amp;&amp;yy&gt;&#x3D;0&amp;&amp;yy&lt;col&amp;&amp;grid[xx][yy]&#x3D;&#x3D;&#39;1&#39;){                        AA.Union(i,yy+xx*col);                    }                }            }            else{                AA.Union(i,n);            }        }        return AA.count()-1;            }};</code></pre><p>还有DFS和BFS的方法&gt;&gt;&gt;&gt;&gt;&gt;</p>]]></content>
+    <content type="html"><![CDATA[<p>试试看并查集的方法：</p><a id="more"></a><h3 id="噔-噔-咚"><a href="#噔-噔-咚" class="headerlink" title="噔  噔  咚"></a>噔  噔  咚</h3><pre><code>class UnionFind{    private:        int Count;        vector&lt;int&gt; parent;        vector&lt;int&gt; size;    public:        UnionFind(int n){            this-&gt;Count&#x3D;n;            for(int i&#x3D;0;i&lt;n;i++){                parent.push_back(i);                size.push_back(1);            }        }        int find(int p){            while(p!&#x3D;parent[p]){                parent[p]&#x3D;parent[parent[p]];                p&#x3D;parent[p];            }            return p;        }        void Union(int p,int q){            int rootP&#x3D;find(p);            int rootQ&#x3D;find(q);            if(connected(p,q))    return;            if(size[rootP]&gt;size[rootQ]){                parent[rootQ]&#x3D;rootP;                size[rootP]+&#x3D;size[rootQ];            }            else{                parent[rootP]&#x3D;rootQ;                size[rootQ]+&#x3D;size[rootP];            }            Count--;        }        bool connected(int p,int q){            int rootP&#x3D;find(p);            int rootQ&#x3D;find(q);            return rootP&#x3D;&#x3D;rootQ;        }        int count(){return Count;}};class Solution {public:    int numIslands(vector&lt;vector&lt;char&gt;&gt;&amp; grid) {        int row&#x3D;grid.size();        if(row&#x3D;&#x3D;0)            return 0;        int col&#x3D;grid[0].size();        if(col&#x3D;&#x3D;0)            return 0;        int n&#x3D;row*col;        UnionFind AA(n+1);        int dx[2]&#x3D;{1,0};        int dy[2]&#x3D;{0,-1};        for(int i&#x3D;0;i&lt;n;i++){            int x&#x3D;i&#x2F;col;            int y&#x3D;i%col;            if(grid[x][y]&#x3D;&#x3D;&#39;1&#39;){                for(int j&#x3D;0;j&lt;2;j++){                    int xx&#x3D;x+dx[j];                    int yy&#x3D;y+dy[j];                    if(xx&gt;&#x3D;0&amp;&amp;xx&lt;row&amp;&amp;yy&gt;&#x3D;0&amp;&amp;yy&lt;col&amp;&amp;grid[xx][yy]&#x3D;&#x3D;&#39;1&#39;){                        AA.Union(i,yy+xx*col);                    }                }            }            else{                AA.Union(i,n);            }        }        return AA.count()-1;      }};</code></pre><p>还有DFS和BFS的方法&gt;&gt;&gt;&gt;&gt;&gt;</p>]]></content>
     
     
     

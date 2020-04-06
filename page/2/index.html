@@ -98,6 +98,14 @@
             <a class="nav-link" href="/about/">About</a>
           </li>
         
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/example/">example</a>
+          </li>
+        
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
@@ -148,34 +156,40 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a href="/2020/03/14/%E6%89%93%E5%BC%80%E8%BD%AC%E7%9B%98%E9%94%81/">
-        <p class="h4 index-header">打开转盘锁</p>
+      <a href="/2020/03/20/%E6%9C%8B%E5%8F%8B%E5%9C%88/">
+        <p class="h4 index-header">朋友圈</p>
       </a>
 
-      <a href="/2020/03/14/%E6%89%93%E5%BC%80%E8%BD%AC%E7%9B%98%E9%94%81/">
+      <a href="/2020/03/20/%E6%9C%8B%E5%8F%8B%E5%9C%88/">
         
         
           
         
         <div class="index-excerpt" >
-          <div class="index-text mb-1">你有一个带有四个圆形拨轮的转盘锁。每个拨轮都有10个数字： ‘0’, ‘1’, ‘2’, ‘3’, ‘4’, ‘5’, ‘6’, ‘7’, ‘8’, ‘9’ 。每个拨轮可以自由旋转：例如把 ‘9’ 变为  ‘0’，’0’ 变为 ‘9’ 。每次旋转都只能旋转一个拨轮的一位数字。
-锁的初始数字为 ‘0000’ ，一个代表四个拨轮的数字的字符串。
-列表 deadends 包含了一组死亡数字，一旦拨轮的数字和列表里的任何一个元素相同，这个锁将会被永久锁定，无法再被旋转。
-字符串 target 代表可以解锁的数字，你需要给出最小的旋转次数，如果无论如何不能解锁，返回 -1。
-示例 1:
-输入：deade</div>
+          <div class="index-text mb-1">
+class UnionFind{
+    private:
+        int Count;
+        vector&lt;int&gt; parent;
+        vector&lt;int&gt; size;
+    public:
+        UnionFind(int n){
+            this-&gt;Count&#x3D;n;
+            for(int i&#x3D;0;i&lt;n;i++){
+                parent.push_back(i);
+                size.push_back(1</div>
         </div>
       </a>
 
       <div class="index-btm">
         
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-14&nbsp;&nbsp;
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-20&nbsp;&nbsp;
         
         
         
           <i class="iconfont icon-tag"></i>
           
-            <a href="/tags/Breadth-First-Search/">Breadth First Search</a>&nbsp;
+            <a href="/tags/Union-Find/">Union Find</a>&nbsp;
           
         
       </div>
@@ -185,38 +199,41 @@
   <div class="row mx-auto index-card">
     
     
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2020/03/14/%E5%A4%8D%E5%8E%9FIP%E5%9C%B0%E5%9D%80/" target="_self">
-          <img src="/img/night.png" srcset="/img/loading.gif" alt="复原IP地址"
-               class="index-img img-fluid rounded index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/03/14/%E5%A4%8D%E5%8E%9FIP%E5%9C%B0%E5%9D%80/">
-        <p class="h4 index-header">复原IP地址</p>
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a href="/2020/03/20/%E5%AF%BB%E6%89%BE%E5%B3%B0%E5%80%BC/">
+        <p class="h4 index-header">寻找峰值</p>
       </a>
 
-      <a href="/2020/03/14/%E5%A4%8D%E5%8E%9FIP%E5%9C%B0%E5%9D%80/">
+      <a href="/2020/03/20/%E5%AF%BB%E6%89%BE%E5%B3%B0%E5%80%BC/">
         
         
           
-          
         
-        <div class="index-excerpt" style="max-height: none;">
-          <div class="index-text mb-1"> 此题边界条件有很多细节...</div>
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">
+class Solution {
+public:
+    int findPeakElement(vector&lt;int&gt;&amp; nums) {
+        int l&#x3D;0,r&#x3D;nums.size()-1;
+        while(l&lt;r){
+            int mi&#x3D;((r-l)&gt;&gt;1)+l;
+            if(nums[mi]&gt;nums[mi+1]){
+                r&#x3D;mi;
+            }
+            else{
+          </div>
         </div>
       </a>
 
       <div class="index-btm">
         
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-14&nbsp;&nbsp;
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-20&nbsp;&nbsp;
         
         
         
           <i class="iconfont icon-tag"></i>
           
-            <a href="/tags/Backtrack/">Backtrack</a>&nbsp;
+            <a href="/tags/Binary-Search/">Binary Search</a>&nbsp;
           
         
       </div>
@@ -227,92 +244,11 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a href="/2020/03/13/CountCompleteTreeNodes/">
-        <p class="h4 index-header">CountCompleteTreeNodes</p>
+      <a href="/2020/03/20/%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0/">
+        <p class="h4 index-header">最小的k个数</p>
       </a>
 
-      <a href="/2020/03/13/CountCompleteTreeNodes/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">&#x2F;**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- *&#x2F;
-class Solution {
-public:
-    int countNodes(TreeNode* root) {
-        if(!root)
-            re</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-13&nbsp;&nbsp;
-        
-        
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a href="/2020/03/13/BinaryTreePaths/">
-        <p class="h4 index-header">BinaryTreePaths</p>
-      </a>
-
-      <a href="/2020/03/13/BinaryTreePaths/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">&#x2F;**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- *&#x2F;
-class Solution {
-public:
-    vector&lt;string&gt; binaryTreePaths(TreeNode* root) {
-        if</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-13&nbsp;&nbsp;
-        
-        
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a href="/2020/03/13/MajorityElement/">
-        <p class="h4 index-header">MajorityElement</p>
-      </a>
-
-      <a href="/2020/03/13/MajorityElement/">
+      <a href="/2020/03/20/%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0/">
         
         
           
@@ -320,23 +256,27 @@ public:
         <div class="index-excerpt" >
           <div class="index-text mb-1">class Solution {
 public:
-    int majorityElement(vector&lt;int&gt;&amp; nums) {
-        int n&#x3D;nums.size();
-        int count&#x3D;0;
-        int temp&#x3D;0;
-        for(int i&#x3D;0;i&lt;n;i++){
-            if(count&#x3D;&#x3D;0){
-                temp&#x3D;nums[i];
-                count++;
-   </div>
+    vector&lt;int&gt; getLeastNumbers(vector&lt;int&gt;&amp; arr, int k) {
+        priority_queue&lt;int,vector&lt;int&gt;,less&lt;int&gt; &gt; pq;
+        int size&#x3D;arr.size();
+        if(k&gt;size||k&#x3D;&#x3D;0)
+            return {};
+        for(int i&#x3D;0;i&lt;k;</div>
         </div>
       </a>
 
       <div class="index-btm">
         
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-13&nbsp;&nbsp;
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-20&nbsp;&nbsp;
         
         
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/Array/">Array</a>&nbsp;
+          
+            <a href="/tags/Priority-Queue/">Priority Queue</a>&nbsp;
+          
         
       </div>
     </div>
@@ -346,26 +286,209 @@ public:
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a href="/2020/03/12/LC-25/">
-        <p class="h4 index-header">Reverse Nodes in k-Group</p>
+      <a href="/2020/03/19/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/">
+        <p class="h4 index-header">编辑距离</p>
       </a>
 
-      <a href="/2020/03/12/LC-25/">
+      <a href="/2020/03/19/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/">
         
         
           
+          
         
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.
-k is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of k then left-out nodes in the end should remain as it is.
-Example:
-Given th</div>
+        <div class="index-excerpt" style="max-height: none;">
+          <div class="index-text mb-1">非常有趣的一道题...</div>
         </div>
       </a>
 
       <div class="index-btm">
         
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-12&nbsp;&nbsp;
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-19&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/Dynamic-Programming/">Dynamic Programming</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a href="/2020/03/19/%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/">
+        <p class="h4 index-header">最小覆盖子串</p>
+      </a>
+
+      <a href="/2020/03/19/%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/">
+        
+        
+          
+          
+        
+        <div class="index-excerpt" style="max-height: none;">
+          <div class="index-text mb-1">滑动窗口。。。...</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-19&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/String/">String</a>&nbsp;
+          
+            <a href="/tags/Sliding-Window/">Sliding Window</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a href="/2020/03/18/%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8CIII/">
+        <p class="h4 index-header">路径总和III</p>
+      </a>
+
+      <a href="/2020/03/18/%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8CIII/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">&#x2F;**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ *&#x2F;
+class Solution {
+    unordered_map&lt;int,int&gt; count;
+public:
+    int pathSum(TreeNode* roo</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-18&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/Binary-Tree/">Binary Tree</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a href="/2020/03/18/%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8CII/">
+        <p class="h4 index-header">路径总和II</p>
+      </a>
+
+      <a href="/2020/03/18/%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8CII/">
+        
+        
+          
+          
+        
+        <div class="index-excerpt" style="max-height: none;">
+          <div class="index-text mb-1">    路...</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-18&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/Binary-Tree/">Binary Tree</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a href="/2020/03/18/%E7%9F%A9%E5%BD%A2%E9%87%8D%E5%8F%A0/">
+        <p class="h4 index-header">矩形重叠</p>
+      </a>
+
+      <a href="/2020/03/18/%E7%9F%A9%E5%BD%A2%E9%87%8D%E5%8F%A0/">
+        
+        
+          
+          
+        
+        <div class="index-excerpt" style="max-height: none;">
+          <div class="index-text mb-1">...</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-18&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/Brute-Force/">Brute Force</a>&nbsp;
+          
+            <a href="/tags/Math/">Math</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a href="/2020/03/17/%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/">
+        <p class="h4 index-header">重排链表</p>
+      </a>
+
+      <a href="/2020/03/17/%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/">
+        
+        
+          
+          
+        
+        <div class="index-excerpt" style="max-height: none;">
+          <div class="index-text mb-1">自己又变菜了明明链表就那么几个花样：头节点，快慢指针，插入删除写起来就BUG无限，Endless Bugs Most Beautiful...</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-17&nbsp;&nbsp;
         
         
         
@@ -382,163 +505,32 @@ Given th</div>
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a href="/2020/03/12/LeetCode1071/">
-        <p class="h4 index-header">LeetCode1071</p>
+      <a href="/2020/03/17/%E9%93%BE%E8%A1%A8%E7%9A%84%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/">
+        <p class="h4 index-header">链表的插入排序</p>
       </a>
 
-      <a href="/2020/03/12/LeetCode1071/">
+      <a href="/2020/03/17/%E9%93%BE%E8%A1%A8%E7%9A%84%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/">
         
         
           
+          
         
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">
-greatest common divisor最大公因数与辗转相除法    gcd(a,b)=gcd(b,a%b)证明：设a=kb+r, r=a%b    设d=gcd(a,b), d|a,d|b;    r=a-kb; r/d=a/d-k*b/d;    所以r/d也是一个整数，d|r    所以gcd(a,b)=gcd(b.a%b).    同样的，对于一个字符串的长度而言，可以先找到它们的公因数长度的子串，如果存在这样一个子串，那么它的长度必然等于原字符串中的任一个最小因子长度的子字符串。    注意每次都要先进行条件判断，即它们是否同构
-
-class Solution {
-publi</div>
+        <div class="index-excerpt" style="max-height: none;">
+          <div class="index-text mb-1">插入排序妙啊啊啊啊啊啊啊啊，我选择归并排序(逃)。...</div>
         </div>
       </a>
 
       <div class="index-btm">
         
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-12&nbsp;&nbsp;
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-17&nbsp;&nbsp;
         
         
         
           <i class="iconfont icon-tag"></i>
           
-            <a href="/tags/String/">String</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a href="/2020/03/11/Combination/">
-        <p class="h4 index-header">Combination</p>
-      </a>
-
-      <a href="/2020/03/11/Combination/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">215.Combination Sum III先上代码233：
-class Solution {
-public:
-    vector&lt;vector&lt;int&gt;&gt; combinationSum3(int k, int n) {
-        vector&lt;vector&lt;int&gt;&gt; res;
-        vector&lt;int&gt; path;
-        backtrack(n,path,k,res,0);
-        return res;
-    }
-    void backtrack(int n,vector&lt;in</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-11&nbsp;&nbsp;
-        
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/Backtrack/">Backtrack</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a href="/2020/03/11/findKth/">
-        <p class="h4 index-header">findKth</p>
-      </a>
-
-      <a href="/2020/03/11/findKth/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">215.寻找第K大的元素
-class Solution {
-public:
-    int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {
-        int n&#x3D;nums.size();
-        return findKth(nums,0,n-1,k);
-    }
-    int findKth(vector&lt;int&gt; &amp;nums,int left,int right,int k){
-        int index&#x3D;partition(nums,left,right);
-   </div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-11&nbsp;&nbsp;
-        
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/Array/">Array</a>&nbsp;
+            <a href="/tags/Linked-List/">Linked List</a>&nbsp;
           
             <a href="/tags/Sorting/">Sorting</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a href="/2020/03/10/LeetCode-207/">
-        <p class="h4 index-header">LeetCode-207</p>
-      </a>
-
-      <a href="/2020/03/10/LeetCode-207/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">
-如何理解这样一个问题课程1是课程0的前期必修课程，所以存在1-&gt;0这样的一种映射关系那么根据课程表里的信息，我们可以相应的建立这样一张课程图。图中每一个顶点可能没有入度(因为没有前期必修的课程基础)，这样的一系列节点自然符合课程的修读要求，是自然符合的。那么，我们只需要关系那些存在入度的顶点，观察它们再现有的条件下，是否能够满足，如果全部都满足了，那么就是有效的课程，反之则无效。
-
-第一种策略：广度优先搜索class Solution {
-public:
-    bool canFinish(int numCourses, vector&lt;vector&lt;int&gt;&gt;</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-10&nbsp;&nbsp;
-        
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/Graph/">Graph</a>&nbsp;
-          
-            <a href="/tags/Breadth-First-Search/">Breadth First Search</a>&nbsp;
-          
-            <a href="/tags/Depth-First-Search/">Depth First Search</a>&nbsp;
-          
-            <a href="/tags/Topological-Sort/">Topological Sort</a>&nbsp;
           
         
       </div>
@@ -549,7 +541,7 @@ public:
 
   <nav aria-label="index posts navigation">
     <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="fas fa-angle-double-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fas fa-angle-double-right"></i></a>
+      <a class="extend prev" rel="prev" href="/"><i class="fas fa-angle-double-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fas fa-angle-double-right"></i></a>
     </span>
   </nav>
   

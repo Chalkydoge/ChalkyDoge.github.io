@@ -98,6 +98,14 @@
             <a class="nav-link" href="/about/">About</a>
           </li>
         
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/example/">example</a>
+          </li>
+        
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
@@ -148,11 +156,224 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a href="/2020/03/17/%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/">
-        <p class="h4 index-header">重排链表</p>
+      <a href="/2020/04/01/1111/">
+        <p class="h4 index-header">1111</p>
       </a>
 
-      <a href="/2020/03/17/%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/">
+      <a href="/2020/04/01/1111/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">2333333
+</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-04-01&nbsp;&nbsp;
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a href="/2020/03/31/rooms/">
+        <p class="h4 index-header">rooms</p>
+      </a>
+
+      <a href="/2020/03/31/rooms/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">class Solution {
+public:
+    void dfs(int i,vector&lt;vector&lt;int&gt;&gt;&amp; rooms,vector&lt;bool&gt;&amp; visited,int &amp;cnt){
+        for(int j:rooms[i]){
+            if(!visited[j]){
+                visited[j]&#x3D;true;
+                cnt++;
+                dfs(j,rooms,visited,cnt);
+     </div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-31&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/Depth-First-Search/">Depth First Search</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a href="/2020/03/26/%E5%88%86%E5%89%B2%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC/">
+        <p class="h4 index-header">分割数组的最大值</p>
+      </a>
+
+      <a href="/2020/03/26/%E5%88%86%E5%89%B2%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">class Solution {
+public:
+    int splitArray(vector&lt;int&gt;&amp; nums, int m) {
+        long long left&#x3D;0,right&#x3D;0;
+        for(int num:nums){
+            left&#x3D;max(left,static_cast&lt;long long&gt;(num));
+            right+&#x3D;num;
+        }
+        &#x2F;&#x2F;[max(nums[0],nums[1],</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-26&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/DP/">DP</a>&nbsp;
+          
+            <a href="/tags/Greedy/">Greedy</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a href="/2020/03/25/maximum-rectangle/">
+        <p class="h4 index-header">maximum-rectangle</p>
+      </a>
+
+      <a href="/2020/03/25/maximum-rectangle/">
+        
+        
+          
+          
+        
+        <div class="index-excerpt" style="max-height: none;">
+          <div class="index-text mb-1">很好的一道题。。。最好与84题一起食用...</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-25&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/DP/">DP</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a href="/2020/03/24/%E5%8D%95%E8%AF%8D%E6%8B%86%E5%88%86/">
+        <p class="h4 index-header">单词拆分</p>
+      </a>
+
+      <a href="/2020/03/24/%E5%8D%95%E8%AF%8D%E6%8B%86%E5%88%86/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">dp[i] means whether the substr[0,i] can be broke down to wordsdp[i]=true so it is possible, else it’s impossible.do the process with each of the possible position, till the end.
+class Solution {
+public:
+    bool wordBreak(string s, vector&lt;string&gt;&amp; wordDict) {
+        int m&#x3D;s.length();</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-24&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/DP/">DP</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a href="/2020/03/23/3n%E5%9D%97%E6%8A%AB%E8%90%A8/">
+        <p class="h4 index-header">3n块披萨</p>
+      </a>
+
+      <a href="/2020/03/23/3n%E5%9D%97%E6%8A%AB%E8%90%A8/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">区间DP+2n操作{}//dp[l][r]=&gt;maxsize after taking all from left-&gt;right//dp[l1][r2]=dp[l1][r1]+dp[l2][r2]—-&gt;l2==r1//dp[l+1][mid]+slices[mid]+dp[mid+1][r-1]=&gt;dp[l][r]//ring to list by double the size
+class Solution {    int dp[5503][5503];public:    int maxSizeSlices(vector&amp; slices) {       </div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-23&nbsp;&nbsp;
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a href="/2020/03/22/%E6%A3%80%E6%9F%A5%E6%9C%89%E6%95%88%E8%B7%AF%E5%BE%84/">
+        <p class="h4 index-header">检查有效路径</p>
+      </a>
+
+      <a href="/2020/03/22/%E6%A3%80%E6%9F%A5%E6%9C%89%E6%95%88%E8%B7%AF%E5%BE%84/">
         
         
           
@@ -164,7 +385,7 @@
 
       <div class="index-btm">
         
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-17&nbsp;&nbsp;
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-22&nbsp;&nbsp;
         
         
         
@@ -176,32 +397,38 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a href="/2020/03/17/%E9%93%BE%E8%A1%A8%E7%9A%84%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/">
-        <p class="h4 index-header">链表的插入排序</p>
+      <a href="/2020/03/22/%E5%9B%9B%E5%9B%A0%E5%AD%90/">
+        <p class="h4 index-header">四因子</p>
       </a>
 
-      <a href="/2020/03/17/%E9%93%BE%E8%A1%A8%E7%9A%84%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/">
+      <a href="/2020/03/22/%E5%9B%9B%E5%9B%A0%E5%AD%90/">
         
         
           
-          
         
-        <div class="index-excerpt" style="max-height: none;">
-          <div class="index-text mb-1">插入排序妙啊啊啊啊啊啊啊啊，我选择归并排序(逃)。...</div>
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">class Solution {
+public:
+    int sumFourDivisors(vector&lt;int&gt;&amp; nums) {
+        int res&#x3D;0;
+        for(int i:nums){
+            int count&#x3D;0;
+            int sum&#x3D;0;
+            for(int k&#x3D;1;k*k&lt;&#x3D;i;k++){
+                if(i%k&#x3D;&#x3D;0){
+                    if(k*</div>
         </div>
       </a>
 
       <div class="index-btm">
         
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-17&nbsp;&nbsp;
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-22&nbsp;&nbsp;
         
         
         
           <i class="iconfont icon-tag"></i>
           
-            <a href="/tags/Linked-List/">Linked List</a>&nbsp;
-          
-            <a href="/tags/Sorting/">Sorting</a>&nbsp;
+            <a href="/tags/Math/">Math</a>&nbsp;
           
         
       </div>
@@ -212,94 +439,24 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a href="/2020/03/17/LRU%E8%AE%BE%E8%AE%A1/">
-        <p class="h4 index-header">LRU设计</p>
+      <a href="/2020/03/22/%E6%9C%80%E9%95%BF%E5%BF%AB%E4%B9%90%E5%89%8D%E7%BC%80/">
+        <p class="h4 index-header">最长快乐前缀</p>
       </a>
 
-      <a href="/2020/03/17/LRU%E8%AE%BE%E8%AE%A1/">
+      <a href="/2020/03/22/%E6%9C%80%E9%95%BF%E5%BF%AB%E4%B9%90%E5%89%8D%E7%BC%80/">
         
         
           
           
         
         <div class="index-excerpt" style="max-height: none;">
-          <div class="index-text mb-1">LRU Cache...</div>
+          <div class="index-text mb-1">我裂开了,…我不会快乐了...</div>
         </div>
       </a>
 
       <div class="index-btm">
         
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-17&nbsp;&nbsp;
-        
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/Hashing/">Hashing</a>&nbsp;
-          
-            <a href="/tags/Designing/">Designing</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a href="/2020/03/17/%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/">
-        <p class="h4 index-header">栈实现队列</p>
-      </a>
-
-      <a href="/2020/03/17/%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/">
-        
-        
-          
-          
-        
-        <div class="index-excerpt" style="max-height: none;">
-          <div class="index-text mb-1">假象。...</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-17&nbsp;&nbsp;
-        
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/Stack/">Stack</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a href="/2020/03/17/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%8B%E7%BC%A9/">
-        <p class="h4 index-header">字符串压缩</p>
-      </a>
-
-      <a href="/2020/03/17/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%8B%E7%BC%A9/">
-        
-        
-          
-          
-        
-        <div class="index-excerpt" style="max-height: none;">
-          <div class="index-text mb-1">比较简单的每日一题~...</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-17&nbsp;&nbsp;
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-22&nbsp;&nbsp;
         
         
         
@@ -316,202 +473,25 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a href="/2020/03/17/%E6%8B%BC%E5%86%99%E5%8D%95%E8%AF%8D/">
-        <p class="h4 index-header">拼写单词</p>
+      <a href="/2020/03/22/%E5%AE%89%E6%8E%92%E7%94%B5%E5%BD%B1%E9%99%A2%E5%BA%A7%E4%BD%8D/">
+        <p class="h4 index-header">安排电影院座位</p>
       </a>
 
-      <a href="/2020/03/17/%E6%8B%BC%E5%86%99%E5%8D%95%E8%AF%8D/">
+      <a href="/2020/03/22/%E5%AE%89%E6%8E%92%E7%94%B5%E5%BD%B1%E9%99%A2%E5%BA%A7%E4%BD%8D/">
         
         
           
-          
         
-        <div class="index-excerpt" style="max-height: none;">
-          <div class="index-text mb-1">Brute Force…...</div>
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">{}class Solution {public:    int cnt=0;    map&lt;int,int&gt; id;    vector r[10010];    int maxNumberOfFamilies(int n, vector&lt;vector&gt;&amp; reservedSeats) {        for(int i=0;i&lt;reservedSeats.size();++i)        {            vector a=reservedSeats[i];            if(id[a[0]]==0)id[a[0]]=++cnt</div>
         </div>
       </a>
 
       <div class="index-btm">
         
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-17&nbsp;&nbsp;
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-22&nbsp;&nbsp;
         
         
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/String/">String</a>&nbsp;
-          
-            <a href="/tags/Hashing/">Hashing</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2020/03/15/%E5%B2%9B%E5%B1%BF%E6%9C%80%E5%A4%A7%E9%9D%A2%E7%A7%AF/" target="_self">
-          <img src="/img/wheat.jpg" srcset="/img/loading.gif" alt="岛屿最大面积"
-               class="index-img img-fluid rounded index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/03/15/%E5%B2%9B%E5%B1%BF%E6%9C%80%E5%A4%A7%E9%9D%A2%E7%A7%AF/">
-        <p class="h4 index-header">岛屿最大面积</p>
-      </a>
-
-      <a href="/2020/03/15/%E5%B2%9B%E5%B1%BF%E6%9C%80%E5%A4%A7%E9%9D%A2%E7%A7%AF/">
-        
-        
-          
-          
-        
-        <div class="index-excerpt" style="max-height: none;">
-          <div class="index-text mb-1">岛屿系列No.2...</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-15&nbsp;&nbsp;
-        
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/Breadth-First-Search/">Breadth First Search</a>&nbsp;
-          
-            <a href="/tags/Depth-First-Search/">Depth First Search</a>&nbsp;
-          
-            <a href="/tags/Union-Find/">Union Find</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a href="/2020/03/15/%E6%9C%80%E5%A4%A7%E5%9B%A2%E9%98%9F%E8%A1%A8%E7%8E%B0%E5%80%BC/">
-        <p class="h4 index-header">最大团队表现值</p>
-      </a>
-
-      <a href="/2020/03/15/%E6%9C%80%E5%A4%A7%E5%9B%A2%E9%98%9F%E8%A1%A8%E7%8E%B0%E5%80%BC/">
-        
-        
-          
-          
-        
-        <div class="index-excerpt" style="max-height: none;">
-          <div class="index-text mb-1"> 优先级队列是什么？我还没学到…😭...</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-15&nbsp;&nbsp;
-        
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/Priority-Queue/">Priority Queue</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2020/03/14/%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/" target="_self">
-          <img src="/img/bg.png" srcset="/img/loading.gif" alt="_200_岛屿数量"
-               class="index-img img-fluid rounded index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/03/14/%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/">
-        <p class="h4 index-header">_200_岛屿数量</p>
-      </a>
-
-      <a href="/2020/03/14/%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/">
-        
-        
-          
-          
-        
-        <div class="index-excerpt" style="max-height: none;">
-          <div class="index-text mb-1">试试看并查集的方法：...</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-14&nbsp;&nbsp;
-        
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/Breadth-First-Search/">Breadth First Search</a>&nbsp;
-          
-            <a href="/tags/Depth-First-Search/">Depth First Search</a>&nbsp;
-          
-            <a href="/tags/Union-Find/">Union Find</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2020/03/14/%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97/" target="_self">
-          <img src="/img/cat.jpg" srcset="/img/loading.gif" alt="最长上升子序列"
-               class="index-img img-fluid rounded index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/03/14/%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97/">
-        <p class="h4 index-header">最长上升子序列</p>
-      </a>
-
-      <a href="/2020/03/14/%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97/">
-        
-        
-          
-          
-        
-        <div class="index-excerpt" style="max-height: none;">
-          <div class="index-text mb-1">难以置信的二分法...</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-14&nbsp;&nbsp;
-        
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/Array/">Array</a>&nbsp;
-          
-            <a href="/tags/Dynamic-Programming/">Dynamic Programming</a>&nbsp;
-          
-            <a href="/tags/Binary-Search/">Binary Search</a>&nbsp;
-          
         
       </div>
     </div>
@@ -521,7 +501,7 @@
 
   <nav aria-label="index posts navigation">
     <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-double-right"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-double-right"></i></a>
     </span>
   </nav>
   

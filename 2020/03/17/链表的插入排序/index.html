@@ -98,6 +98,14 @@
             <a class="nav-link" href="/about/">About</a>
           </li>
         
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/example/">example</a>
+          </li>
+        
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
@@ -132,7 +140,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    134 字
+                    247 字
                   </span>
                 
 
@@ -208,6 +216,20 @@ public:
        return dummy-&gt;next;
     }
 };</code></pre>
+
+<ol>
+<li><p>确定已排序区域，用一个指针维护端点（这里用head）</p>
+</li>
+<li><p>找到已排序区域的 下一个元素（就是第一个未排序的元素）==head-&gt;next</p>
+</li>
+<li><p>找到这个元素在排序区域内的位置，就是用prev来确定</p>
+</li>
+<li><p>将该元素插入这个位置，移动排序区域的位置（head）</p>
+</li>
+<li><p>一遍又一遍的重复这个操作,直到最后一个元素也被排序</p>
+</li>
+</ol>
+
             </div>
             <hr>
             <div>
