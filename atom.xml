@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>CodingDoge</title>
+  
+  
+  <link href="https://chalkydoge.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://chalkydoge.github.io/"/>
+  <updated>2020-08-16T14:49:38.641Z</updated>
+  <id>https://chalkydoge.github.io/</id>
+  
+  <author>
+    <name>Chalky Doge</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>0623.二进制求和</title>
+    <link href="https://chalkydoge.github.io/2020/06/23/LC06-23-%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%B1%82%E5%92%8C/"/>
+    <id>https://chalkydoge.github.io/2020/06/23/LC06-23-%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%B1%82%E5%92%8C/</id>
+    <published>2020-06-23T03:39:37.000Z</published>
+    <updated>2020-08-16T14:49:38.641Z</updated>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;模拟运算~又是easy的一天&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    
+    <category term="String" scheme="https://chalkydoge.github.io/tags/String/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>0622.模式匹配</title>
+    <link href="https://chalkydoge.github.io/2020/06/22/LC06-22-%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D/"/>
+    <id>https://chalkydoge.github.io/2020/06/22/LC06-22-%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D/</id>
+    <published>2020-06-22T03:52:04.000Z</published>
+    <updated>2020-08-16T12:56:08.032Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;del&gt;二元一次方程的应用(逃&lt;/del&gt;&lt;br&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="String" scheme="https://chalkydoge.github.io/tags/String/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>点菜单</title>
+    <link href="https://chalkydoge.github.io/2020/04/19/table-of-food/"/>
+    <id>https://chalkydoge.github.io/2020/04/19/table-of-food/</id>
+    <published>2020-04-19T05:08:52.000Z</published>
+    <updated>2020-08-16T12:53:25.679Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;熟练掌握STL的使用系列……😂&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Set" scheme="https://chalkydoge.github.io/tags/Set/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>找出循环字符串</title>
+    <link href="https://chalkydoge.github.io/2020/04/19/count-the-repetitions/"/>
+    <id>https://chalkydoge.github.io/2020/04/19/count-the-repetitions/</id>
+    <published>2020-04-19T05:07:59.000Z</published>
+    <updated>2020-08-16T13:09:05.346Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;我不会 我不会 CV大法好！😲&lt;br&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="String" scheme="https://chalkydoge.github.io/tags/String/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>生成数组</title>
+    <link href="https://chalkydoge.github.io/2020/04/19/array/"/>
+    <id>https://chalkydoge.github.io/2020/04/19/array/</id>
+    <published>2020-04-19T05:03:10.000Z</published>
+    <updated>2020-08-16T13:18:43.816Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;NULL&lt;/em&gt;&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>矩形面积</title>
+    <link href="https://chalkydoge.github.io/2020/04/18/%E7%9F%A9%E5%BD%A2%E9%9D%A2%E7%A7%AF/"/>
+    <id>https://chalkydoge.github.io/2020/04/18/%E7%9F%A9%E5%BD%A2%E9%9D%A2%E7%A7%AF/</id>
+    <published>2020-04-18T04:51:30.000Z</published>
+    <updated>2020-08-16T13:30:41.120Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;边界情况过多,自裁(请,无慈悲)&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>单词接龙</title>
+    <link href="https://chalkydoge.github.io/2020/04/18/%E5%8D%95%E8%AF%8D%E6%8E%A5%E9%BE%99/"/>
+    <id>https://chalkydoge.github.io/2020/04/18/%E5%8D%95%E8%AF%8D%E6%8E%A5%E9%BE%99/</id>
+    <published>2020-04-18T04:07:03.000Z</published>
+    <updated>2020-08-16T13:19:36.697Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;把每个单词看作一个结点, 将问题转化为一个图的最短路径的搜索问题。&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Breadth First Search" scheme="https://chalkydoge.github.io/tags/Breadth-First-Search/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>交点</title>
+    <link href="https://chalkydoge.github.io/2020/04/12/%E4%BA%A4%E7%82%B9/"/>
+    <id>https://chalkydoge.github.io/2020/04/12/%E4%BA%A4%E7%82%B9/</id>
+    <published>2020-04-12T02:02:10.000Z</published>
+    <updated>2020-08-16T14:09:09.724Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;无fa可说-&amp;gt;CV大法好！&lt;br&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>1111</title>
+    <link href="https://chalkydoge.github.io/2020/04/01/1111/"/>
+    <id>https://chalkydoge.github.io/2020/04/01/1111/</id>
+    <published>2020-04-01T07:43:04.000Z</published>
+    <updated>2020-08-16T10:54:47.377Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>上🔒的房间</title>
+    <link href="https://chalkydoge.github.io/2020/03/31/rooms/"/>
+    <id>https://chalkydoge.github.io/2020/03/31/rooms/</id>
+    <published>2020-03-31T07:30:10.000Z</published>
+    <updated>2020-08-16T12:57:27.244Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;del&gt;上撤🔒&lt;/del&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Depth First Search" scheme="https://chalkydoge.github.io/tags/Depth-First-Search/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>分割数组的最大值</title>
+    <link href="https://chalkydoge.github.io/2020/03/26/%E5%88%86%E5%89%B2%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC/"/>
+    <id>https://chalkydoge.github.io/2020/03/26/%E5%88%86%E5%89%B2%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC/</id>
+    <published>2020-03-26T03:26:26.000Z</published>
+    <updated>2020-08-16T14:07:27.635Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;老二分了🤣&lt;br&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="DP" scheme="https://chalkydoge.github.io/tags/DP/"/>
+    
+    <category term="Greedy" scheme="https://chalkydoge.github.io/tags/Greedy/"/>
+    
+    <category term="Binary Search" scheme="https://chalkydoge.github.io/tags/Binary-Search/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>最大矩形</title>
+    <link href="https://chalkydoge.github.io/2020/03/25/maximum-rectangle/"/>
+    <id>https://chalkydoge.github.io/2020/03/25/maximum-rectangle/</id>
+    <published>2020-03-25T08:40:38.000Z</published>
+    <updated>2020-08-16T14:50:16.012Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;很好的一道题。。。最好与&lt;code&gt;84题&lt;/code&gt;一起食用&lt;br&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="DP" scheme="https://chalkydoge.github.io/tags/DP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>单词拆分</title>
+    <link href="https://chalkydoge.github.io/2020/03/24/%E5%8D%95%E8%AF%8D%E6%8B%86%E5%88%86/"/>
+    <id>https://chalkydoge.github.io/2020/03/24/%E5%8D%95%E8%AF%8D%E6%8B%86%E5%88%86/</id>
+    <published>2020-03-24T06:51:57.000Z</published>
+    <updated>2020-08-16T13:29:40.456Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;半个dp~&lt;br&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="DP" scheme="https://chalkydoge.github.io/tags/DP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>3n块披萨</title>
+    <link href="https://chalkydoge.github.io/2020/03/23/3n%E5%9D%97%E6%8A%AB%E8%90%A8/"/>
+    <id>https://chalkydoge.github.io/2020/03/23/3n%E5%9D%97%E6%8A%AB%E8%90%A8/</id>
+    <published>2020-03-23T07:54:52.000Z</published>
+    <updated>2020-08-16T14:56:50.040Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;…&lt;br&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>检查有效路径</title>
+    <link href="https://chalkydoge.github.io/2020/03/22/%E6%A3%80%E6%9F%A5%E6%9C%89%E6%95%88%E8%B7%AF%E5%BE%84/"/>
+    <id>https://chalkydoge.github.io/2020/03/22/%E6%A3%80%E6%9F%A5%E6%9C%89%E6%95%88%E8%B7%AF%E5%BE%84/</id>
+    <published>2020-03-22T06:00:24.000Z</published>
+    <updated>2020-03-22T06:00:24.864Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>四因子</title>
+    <link href="https://chalkydoge.github.io/2020/03/22/%E5%9B%9B%E5%9B%A0%E5%AD%90/"/>
+    <id>https://chalkydoge.github.io/2020/03/22/%E5%9B%9B%E5%9B%A0%E5%AD%90/</id>
+    <published>2020-03-22T05:13:38.000Z</published>
+    <updated>2020-08-16T14:57:12.951Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;…&lt;br&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Math" scheme="https://chalkydoge.github.io/tags/Math/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>最长快乐前缀</title>
+    <link href="https://chalkydoge.github.io/2020/03/22/%E6%9C%80%E9%95%BF%E5%BF%AB%E4%B9%90%E5%89%8D%E7%BC%80/"/>
+    <id>https://chalkydoge.github.io/2020/03/22/%E6%9C%80%E9%95%BF%E5%BF%AB%E4%B9%90%E5%89%8D%E7%BC%80/</id>
+    <published>2020-03-22T04:34:23.000Z</published>
+    <updated>2020-08-16T14:25:09.401Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;我裂开了,…我不会快乐了&lt;br&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="String" scheme="https://chalkydoge.github.io/tags/String/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>安排电影院座位</title>
+    <link href="https://chalkydoge.github.io/2020/03/22/%E5%AE%89%E6%8E%92%E7%94%B5%E5%BD%B1%E9%99%A2%E5%BA%A7%E4%BD%8D/"/>
+    <id>https://chalkydoge.github.io/2020/03/22/%E5%AE%89%E6%8E%92%E7%94%B5%E5%BD%B1%E9%99%A2%E5%BA%A7%E4%BD%8D/</id>
+    <published>2020-03-21T16:14:47.000Z</published>
+    <updated>2020-08-16T14:57:22.799Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;del&gt;Nasty Codes&lt;/del&gt;&lt;br&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>朋友圈</title>
+    <link href="https://chalkydoge.github.io/2020/03/20/%E6%9C%8B%E5%8F%8B%E5%9C%88/"/>
+    <id>https://chalkydoge.github.io/2020/03/20/%E6%9C%8B%E5%8F%8B%E5%9C%88/</id>
+    <published>2020-03-20T06:27:54.000Z</published>
+    <updated>2020-08-16T14:57:34.939Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;ufuf!&lt;br&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Union Find" scheme="https://chalkydoge.github.io/tags/Union-Find/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>寻找峰值</title>
+    <link href="https://chalkydoge.github.io/2020/03/20/%E5%AF%BB%E6%89%BE%E5%B3%B0%E5%80%BC/"/>
+    <id>https://chalkydoge.github.io/2020/03/20/%E5%AF%BB%E6%89%BE%E5%B3%B0%E5%80%BC/</id>
+    <published>2020-03-20T06:06:35.000Z</published>
+    <updated>2020-08-16T14:57:58.883Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;2分法！！！&lt;br&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Binary Search" scheme="https://chalkydoge.github.io/tags/Binary-Search/"/>
+    
+  </entry>
+  
+</feed>

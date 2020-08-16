@@ -1,624 +1,432 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
-
-
-
 <head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"chalkydoge.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="B-Tree dynamtic procedures&#x2F;remove&amp;insert">
+<meta property="og:url" content="https://chalkydoge.github.io/2020/03/09/B-Tree/index.html">
+<meta property="og:site_name" content="CodingDoge">
+<meta property="og:description" content="…">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-09T14:40:11.000Z">
+<meta property="article:modified_time" content="2020-08-16T14:42:37.906Z">
+<meta property="article:author" content="Chalky Doge">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://chalkydoge.github.io/2020/03/09/B-Tree/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>B-Tree dynamtic procedures/remove&insert | CodingDoge</title>
   
-  <meta name="description" content="">
-  <meta name="author" content="Chalky Doge">
-  <meta name="keywords" content="">
-  <title>B-Tree dynamtic procedures/remove&amp;insert - CodingDoge</title>
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
-<link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
-<link  rel="stylesheet" href="https://cdn.staticfile.org/mdbootstrap/4.13.0/css/mdb.min.css" />
-<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css" />
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
 
 
 
-  <link  rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css" />
-
-<link  rel="stylesheet" href="/css/main.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
 
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
 
-<!-- 自定义样式保持在最底部 -->
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
-<meta name="generator" content="Hexo 4.2.0"></head>
+<link rel="alternate" href="/atom.xml" title="CodingDoge" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
 
-
-<body>
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>CodingDoge</strong>&nbsp;</a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/">Home</a>
-          </li>
-        
-          
-          
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/archives/">Archives</a>
-          </li>
-        
-          
-          
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/categories/">Categories</a>
-          </li>
-        
-          
-          
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/tags/">Tags</a>
-          </li>
-        
-          
-          
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/about/">About</a>
-          </li>
-        
-          
-          
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/example/">example</a>
-          </li>
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
-          </li>
-        
-      </ul>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+    <a href="https://github.com/ChalkyDoge" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">CodingDoge</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
 </nav>
 
-    <div class="view intro-2" id="background" parallax=true
-         style="background: url('/img/bgp.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask rgba-black-light flex-center">
-          <div class="container text-center white-text fadeInUp">
-            <span class="h2" id="subtitle">
-              
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://chalkydoge.github.io/2020/03/09/B-Tree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chalky Doge">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodingDoge">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          B-Tree dynamtic procedures/remove&insert
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-09 22:40:11" itemprop="dateCreated datePublished" datetime="2020-03-09T22:40:11+08:00">2020-03-09</time>
             </span>
-
-            
-              
-                <p class="mt-3 post-meta">
-                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-                  Monday, March 9th 2020, 10:40 pm
-                </p>
-              
-
-              <p class="mt-1">
-                
-                  
-                  <span class="post-meta">
-                    <i class="far fa-chart-bar"></i>
-                    1k 字
-                  </span>
-                
-
-                
-                  
-                  <span class="post-meta">
-                      <i class="far fa-clock"></i>
-                      5 分钟
-                  </span>
-                
-
-                
-                  <!-- 不蒜子统计文章PV -->
-                  
-                  <span id="busuanzi_container_page_pv" class="post-meta" style="display: none">
-                    <i class="far fa-eye" aria-hidden="true"></i>
-                    <span id="busuanzi_value_page_pv"></span> 次
-                  </span>
-                
-              </p>
-            
-          </div>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-16 22:42:37" itemprop="dateModified" datetime="2020-08-16T22:42:37+08:00">2020-08-16</time>
+              </span>
 
           
+
         </div>
-      </div>
-    </div>
-  </header>
+      </header>
 
-  <main>
     
-      
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5 z-depth-3" id="board">
-          <div class="post-content mx-auto" id="post">
-            
-            <div class="markdown-body">
-              <blockquote><p>B-树的操作：插入与删除</p>
+      
+        <p>…<br><a id="more"></a></p>
+<blockquote>
+<p>B-树的操作：插入与删除</p>
 </blockquote>
-<h3 id="基本框架"><a href="#基本框架" class="headerlink" title="基本框架"></a>基本框架</h3><p>首先，用查找算法找到关键码对应节点及其直接后继，类似于执行BST的删除操作，然后交换当前节点与直接后继，并将交换后的直接后继处的叶子节点删除。</p>
-<pre><code>template&lt;typename T&gt; bool BTree&lt;T&gt;::remove(T const&amp; e){
-    BTNode&lt;T&gt;* v&#x3D;search(e);
-    if(!v)  return false;
-    Rank r&#x3D;v-&gt;key.search(e);
-    if(v-&gt;child[0]){&#x2F;&#x2F;如果v不是叶子节点，必然存在直接后继
-        BTNode&lt;T&gt;* u&#x3D;v-&gt;child[r+1];
-        while(u-&gt;child[0])  u&#x3D;u-&gt;child[0];
-        v-&gt;key[r]&#x3D;u-&gt;key[0];
-        v-&gt;key.remove(r);
-        v-&gt;child.remove(r+1);
-        _size--;
-    }
-    solveUnderFlow(v);&#x2F;&#x2F;处理由于删除发生的下溢问题
-    return true;       
-}</code></pre>
-<h3 id="下溢问题"><a href="#下溢问题" class="headerlink" title="下溢问题"></a>下溢问题</h3><p>三种可能：左侧足够多，右侧足够多，左右都即将下溢</p>
-<pre><code>template&lt;typename T&gt; void BTree&lt;T&gt;::solveUnderFlow(BTNode&lt;T&gt;* v){
-    if((_order+1)&#x2F;2&lt;&#x3D;v-&gt;child-&gt;size())&#x2F;&#x2F;没有发生下溢，不需要变化
-        return;
-    BTNode&lt;T&gt;* p&#x3D;v-&gt;parent;
-    if(!p){
-        if(!v-&gt;key.size()&amp;&amp;v-&gt;child[0]){
-            _root&#x3D;v-&gt;child[0];
-            _root-&gt;parent&#x3D;NULL;
-            v-&gt;child[0]&#x3D;NULL;
-            release(v);
-        }&#x2F;&#x2F;树根v没有关键码，却有唯一的非空孩子
-        &#x2F;&#x2F;则可以销毁掉这个节点，并将整树高度下降一个单位       
-        return;
-    }
-    Rank r&#x3D;0;
-    while(p-&gt;child[r]!&#x3D;v)   r++;
-    &#x2F;&#x2F;确定v是p的第r个孩子，此时由于v可能不含关键码
-    &#x2F;&#x2F;所以不能直接通过关键码查找v
-    &#x2F;&#x2F;情况1：向左兄弟借关键码
-    if(r&gt;0){&#x2F;&#x2F;v不是p的第一个孩子
-        BTNode&lt;T&gt;* ls&#x3D;p-&gt;child[r-1];&#x2F;&#x2F;想想中序遍历的直接后继
-        if((_order+1)&#x2F;2&lt;ls-&gt;child.size()){&#x2F;&#x2F;左兄弟够借
-            v-&gt;key.insert(0,p-&gt;key[r-1]);&#x2F;&#x2F;先从父亲借1个
-            p-&gt;key[r-1]&#x3D;ls-&gt;key.remove(ls-&gt;key.size()-1);&#x2F;&#x2F;左兄弟移给父亲
-            v-&gt;child.insert(0,ls-&gt;child.remove(ls-&gt;child.size()-1));&#x2F;&#x2F;引用节点也要相应的转移给右边的兄弟
-        }
-        if(v-&gt;child[0]) v-&gt;child[0]-&gt;parent&#x3D;v;
-        &#x2F;&#x2F;移完了记得更新parent引用
-        return;
-    }
-    &#x2F;&#x2F;至此，左兄弟要么为空，要么不够借
-    &#x2F;&#x2F;情况2：向右兄弟借关键码
-    if(r&lt;p-&gt;child.size()){
-        BTNode&lt;T&gt;* rs&#x3D;p-&gt;child[r+1];
-        if((_order+1)&#x2F;2&lt;rs-&gt;child.size()){
-            v-&gt;key.insert(v-&gt;key.size(),p-&gt;key[r]);&#x2F;&#x2F;从父亲借一个，插入左边最右侧
-            p-&gt;key[r]&#x3D;rs-&gt;key.remove(0);
-            v-&gt;child.insert(v-&gt;child.size(),rs-&gt;child.remove(0));
-        }
-        if(v-&gt;child[v-&gt;child.size()-1])
-            v-&gt;child[v-&gt;child.size()-1]-&gt;parent&#x3D;v;   
-    }
-    &#x2F;&#x2F;至此，右兄弟要么为空，要么不够借
-    &#x2F;&#x2F;情况3，左右兄弟要么其一为空，要么都不够借
-    if(r&gt;0){&#x2F;&#x2F;向左兄弟合并
-        BTNode&lt;T&gt;* ls&#x3D;p-&gt;child[r-1];
-        ls-&gt;key.insert(ls-&gt;key.size(),p-&gt;key.remove(r-1));
-        p-&gt;child.remove(r);&#x2F;&#x2F;将p的第r-1个关键码转入ls
-        ls-&gt;child.insert(ls-&gt;child.size(),v-&gt;child.remove(0));
-        if(ls-&gt;child[ls-&gt;child.size()-1])
-            ls-&gt;child[ls-&gt;child.size()-1]-&gt;parent&#x3D;ls;
-        while(!v-&gt;key.empty()){
-            ls-&gt;key.insert(ls-&gt;key.size(),v-&gt;key.remove(0));
-            ls-&gt;child.insert(ls-&gt;child.size(),v-&gt;child.remove(0));
-            if(ls-&gt;child[ls-&gt;child.size()-1])
-                ls-&gt;child[ls-&gt;child.size()-1]-&gt;parent&#x3D;ls;
-        }
-        release(v);
-    }
-    else{&#x2F;&#x2F;向右兄弟合并
-        BTNode&lt;T&gt;* rs&#x3D;p-&gt;child[r+1];
-        rs-&gt;key.insert(0,p-&gt;key.remove(r));
-        p-&gt;child.remove(r);
-        rs-&gt;child.insert(0,v-&gt;child.remove(v-&gt;child.size()-1));
-        if(rs-&gt;child[0])
-            rs-&gt;child[0]-&gt;parent&#x3D;rs;
-        while(!v-&gt;key.empty()){
-            rs-&gt;key.insert(0,v-&gt;key.remove(v-&gt;key.size()-1));
-            rs-&gt;child.insert(0,v-&gt;key.remove(v-child.size()-1));
-            if(rs-&gt;child[0])
-                rs-&gt;child[0]-&gt;parent&#x3D;rs;
-        }
-        release(v);
-    }
-    solveUnderFlow(p);
-    return;
-}</code></pre>
-<p>复杂度：平均只有常数次的操作。极端情况为O(logn)的时间复杂度。</p>
+<h3 id="基本框架"><a href="#基本框架" class="headerlink" title="基本框架"></a>基本框架</h3><ul>
+<li>首先，用查找算法找到关键码对应节点及其直接后继，类似于执行BST的删除操作，然后交换当前节点与直接后继，并将交换后的直接后继处的叶子节点删除。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">bool</span> BTree&lt;T&gt;::remove(T <span class="keyword">const</span>&amp; e)&#123;</span><br><span class="line">    BTNode&lt;T&gt;* v=search(e);</span><br><span class="line">    <span class="keyword">if</span>(!v)  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    Rank r=v-&gt;key.search(e);</span><br><span class="line">    <span class="keyword">if</span>(v-&gt;child[<span class="number">0</span>])&#123;<span class="comment">//如果v不是叶子节点，必然存在直接后继</span></span><br><span class="line">        BTNode&lt;T&gt;* u=v-&gt;child[r+<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">while</span>(u-&gt;child[<span class="number">0</span>])  u=u-&gt;child[<span class="number">0</span>];</span><br><span class="line">        v-&gt;key[r]=u-&gt;key[<span class="number">0</span>];</span><br><span class="line">        v-&gt;key.remove(r);</span><br><span class="line">        v-&gt;child.remove(r+<span class="number">1</span>);</span><br><span class="line">        _size--;</span><br><span class="line">    &#125;</span><br><span class="line">    solveUnderFlow(v);<span class="comment">//处理由于删除发生的下溢问题</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="下溢问题"><a href="#下溢问题" class="headerlink" title="下溢问题"></a>下溢问题</h3><ul>
+<li>三种可能：左侧足够多，右侧足够多，左右都即将下溢</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">void</span> BTree&lt;T&gt;::solveUnderFlow(BTNode&lt;T&gt;* v)&#123;</span><br><span class="line">    <span class="keyword">if</span>((_order+<span class="number">1</span>)/<span class="number">2</span>&lt;=v-&gt;child-&gt;size())<span class="comment">//没有发生下溢，不需要变化</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    BTNode&lt;T&gt;* p=v-&gt;parent;</span><br><span class="line">    <span class="keyword">if</span>(!p)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!v-&gt;key.size()&amp;&amp;v-&gt;child[<span class="number">0</span>])&#123;</span><br><span class="line">            _root=v-&gt;child[<span class="number">0</span>];</span><br><span class="line">            _root-&gt;parent=<span class="literal">NULL</span>;</span><br><span class="line">            v-&gt;child[<span class="number">0</span>]=<span class="literal">NULL</span>;</span><br><span class="line">            release(v);</span><br><span class="line">        &#125;<span class="comment">//树根v没有关键码，却有唯一的非空孩子</span></span><br><span class="line">        <span class="comment">//则可以销毁掉这个节点，并将整树高度下降一个单位</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    Rank r=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(p-&gt;child[r]!=v)   r++;</span><br><span class="line">    <span class="comment">//确定v是p的第r个孩子，此时由于v可能不含关键码</span></span><br><span class="line">    <span class="comment">//所以不能直接通过关键码查找v</span></span><br><span class="line">    <span class="comment">//情况1：向左兄弟借关键码</span></span><br><span class="line">    <span class="keyword">if</span>(r&gt;<span class="number">0</span>)&#123;<span class="comment">//v不是p的第一个孩子</span></span><br><span class="line">        BTNode&lt;T&gt;* ls=p-&gt;child[r<span class="number">-1</span>];<span class="comment">//想想中序遍历的直接后继</span></span><br><span class="line">        <span class="keyword">if</span>((_order+<span class="number">1</span>)/<span class="number">2</span>&lt;ls-&gt;child.size())&#123;<span class="comment">//左兄弟够借</span></span><br><span class="line">            v-&gt;key.insert(<span class="number">0</span>,p-&gt;key[r<span class="number">-1</span>]);<span class="comment">//先从父亲借1个</span></span><br><span class="line">            p-&gt;key[r<span class="number">-1</span>]=ls-&gt;key.remove(ls-&gt;key.size()<span class="number">-1</span>);<span class="comment">//左兄弟移给父亲</span></span><br><span class="line">            v-&gt;child.insert(<span class="number">0</span>,ls-&gt;child.remove(ls-&gt;child.size()<span class="number">-1</span>));<span class="comment">//引用节点也要相应的转移给右边的兄弟</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(v-&gt;child[<span class="number">0</span>]) v-&gt;child[<span class="number">0</span>]-&gt;parent=v;</span><br><span class="line">        <span class="comment">//移完了记得更新parent引用</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//至此，左兄弟要么为空，要么不够借</span></span><br><span class="line">    <span class="comment">//情况2：向右兄弟借关键码</span></span><br><span class="line">    <span class="keyword">if</span>(r&lt;p-&gt;child.size())&#123;</span><br><span class="line">        BTNode&lt;T&gt;* rs=p-&gt;child[r+<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span>((_order+<span class="number">1</span>)/<span class="number">2</span>&lt;rs-&gt;child.size())&#123;</span><br><span class="line">            v-&gt;key.insert(v-&gt;key.size(),p-&gt;key[r]);<span class="comment">//从父亲借一个，插入左边最右侧</span></span><br><span class="line">            p-&gt;key[r]=rs-&gt;key.remove(<span class="number">0</span>);</span><br><span class="line">            v-&gt;child.insert(v-&gt;child.size(),rs-&gt;child.remove(<span class="number">0</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(v-&gt;child[v-&gt;child.size()<span class="number">-1</span>])</span><br><span class="line">            v-&gt;child[v-&gt;child.size()<span class="number">-1</span>]-&gt;parent=v;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//至此，右兄弟要么为空，要么不够借</span></span><br><span class="line">    <span class="comment">//情况3，左右兄弟要么其一为空，要么都不够借</span></span><br><span class="line">    <span class="keyword">if</span>(r&gt;<span class="number">0</span>)&#123;<span class="comment">//向左兄弟合并</span></span><br><span class="line">        BTNode&lt;T&gt;* ls=p-&gt;child[r<span class="number">-1</span>];</span><br><span class="line">        ls-&gt;key.insert(ls-&gt;key.size(),p-&gt;key.remove(r<span class="number">-1</span>));</span><br><span class="line">        p-&gt;child.remove(r);<span class="comment">//将p的第r-1个关键码转入ls</span></span><br><span class="line">        ls-&gt;child.insert(ls-&gt;child.size(),v-&gt;child.remove(<span class="number">0</span>));</span><br><span class="line">        <span class="keyword">if</span>(ls-&gt;child[ls-&gt;child.size()<span class="number">-1</span>])</span><br><span class="line">            ls-&gt;child[ls-&gt;child.size()<span class="number">-1</span>]-&gt;parent=ls;</span><br><span class="line">        <span class="keyword">while</span>(!v-&gt;key.empty())&#123;</span><br><span class="line">            ls-&gt;key.insert(ls-&gt;key.size(),v-&gt;key.remove(<span class="number">0</span>));</span><br><span class="line">            ls-&gt;child.insert(ls-&gt;child.size(),v-&gt;child.remove(<span class="number">0</span>));</span><br><span class="line">            <span class="keyword">if</span>(ls-&gt;child[ls-&gt;child.size()<span class="number">-1</span>])</span><br><span class="line">                ls-&gt;child[ls-&gt;child.size()<span class="number">-1</span>]-&gt;parent=ls;</span><br><span class="line">        &#125;</span><br><span class="line">        release(v);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;<span class="comment">//向右兄弟合并</span></span><br><span class="line">        BTNode&lt;T&gt;* rs=p-&gt;child[r+<span class="number">1</span>];</span><br><span class="line">        rs-&gt;key.insert(<span class="number">0</span>,p-&gt;key.remove(r));</span><br><span class="line">        p-&gt;child.remove(r);</span><br><span class="line">        rs-&gt;child.insert(<span class="number">0</span>,v-&gt;child.remove(v-&gt;child.size()<span class="number">-1</span>));</span><br><span class="line">        <span class="keyword">if</span>(rs-&gt;child[<span class="number">0</span>])</span><br><span class="line">            rs-&gt;child[<span class="number">0</span>]-&gt;parent=rs;</span><br><span class="line">        <span class="keyword">while</span>(!v-&gt;key.empty())&#123;</span><br><span class="line">            rs-&gt;key.insert(<span class="number">0</span>,v-&gt;key.remove(v-&gt;key.size()<span class="number">-1</span>));</span><br><span class="line">            rs-&gt;child.insert(<span class="number">0</span>,v-&gt;key.remove(v-child.size()<span class="number">-1</span>));</span><br><span class="line">            <span class="keyword">if</span>(rs-&gt;child[<span class="number">0</span>])</span><br><span class="line">                rs-&gt;child[<span class="number">0</span>]-&gt;parent=rs;</span><br><span class="line">        &#125;</span><br><span class="line">        release(v);</span><br><span class="line">    &#125;</span><br><span class="line">    solveUnderFlow(p);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>复杂度：平均只有常数次的操作。极端情况为$O(logn)$的时间复杂度。</li>
+</ul>
 
-            </div>
-            <hr>
-            <div>
-              <p>
-                
-                
-              </p>
-              
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
-              
-            </div>
+    </div>
 
-            
-              <!-- Comments -->
-              <div class="comments" id="comments">
-                
-                
-  <div id="gitalk-container"></div>
-  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.11.1/js/md5.min.js"></script>
-  <script type="text/javascript">
-    var gitalk = new Gitalk({
-      clientID: '0446fd982233fd70e38e',
-      clientSecret: '5b6294932c34fb8c09cbe0635d9e1143f5d75aa0',
-      repo: 'ChalkyDoge.github.io',
-      owner: 'ChalkyDoge',
-      admin: 'ChalkyDoge',
-      id: md5(location.pathname),
-      language: 'zh-CN',
-      perPage: 15,
-      pagerDirection: 'last',
-      createIssueManually: 'true',
-      distractionFreeMode: 'false'
-    });
+    
+    
+    
+        
 
-    gitalk.render('gitalk-container')
-  </script>
+  <div class="followme">
+    <p>Welcome to my other publishing channels</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
 
 
-              </div>
-            
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/09/hello-world/" rel="prev" title="Hello World">
+      <i class="fa fa-chevron-left"></i> Hello World
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/10/LeetCode-18/" rel="next" title="LeetCode-18">
+      LeetCode-18 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
           </div>
-        </div>
-      </div>
-    </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc-start"></div>
-<div id="toc">
-  <p class="h5"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
-  <div id="tocbot"></div>
-</div>
+          
 
-      </div>
-    
-  </div>
-</div>
-
-<!-- Custom -->
-
-
-    
-  </main>
-
-  
-    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
-      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
-    </a>
-  
-
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-  
-
-  
-
-  
-
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
-    </div>
-    
-  <div>
-    
-      <!-- 不蒜子统计PV -->
-      
-      <span id="busuanzi_container_site_pv" style="display: none">
-      总访问量 <span id="busuanzi_value_site_pv"></span> 次
-    </span>
-    
-    
-      <!-- 不蒜子统计UV -->
-      
-      <span id="busuanzi_container_site_uv" style="display: none">
-      总访客数 <span id="busuanzi_value_site_uv"></span> 人
-    </span>
-    
-  </div>
-
-
-    
-
-    
-  </div>
-</footer>
-
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/popper.js/1.16.1/umd/popper.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="https://cdn.staticfile.org/mdbootstrap/4.13.0/js/mdb.min.js" ></script>
-<script  src="/js/main.js" ></script>
-
-
-  <script  src="/js/lazyload.js" ></script>
-
-
-
-  
-  <script  src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      var navHeight = $('#navbar').height();
-      var post = $('#post');
-      var toc = $('#toc');
-      var tocLimMax = post.offset().top + post.height() - navHeight;
-
-      $(window).scroll(function () {
-        var tocLimMin = $('#toc-start').offset().top - navHeight;
-        var scroH = document.body.scrollTop + document.documentElement.scrollTop;
-
-        if (tocLimMin <= scroH && scroH <= tocLimMax) {
-          toc.css({
-            'display': 'block',
-            'position': 'fixed',
-            'top': navHeight,
-          });
-        } else if (scroH <= tocLimMin) {
-          toc.css({
-            'position': '',
-            'top': '',
-          });
-        } else if (scroH > tocLimMax) {
-          toc.css('display', 'none');
-        }
-      });
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '.post-content',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        scrollSmooth: true,
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc > p').css('visibility', 'visible');
-      }
-      var offset = $('#board-ctn').css('margin-right')
-      $('#toc-ctn').css({
-        'right': offset
-      })
-    });
-  </script>
-
-
-
-
-
-
-
-  <script defer src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-<!-- Plugins -->
-
-
-
-  <script  src="https://cdn.staticfile.org/prettify/188.0.0/prettify.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      $('pre').addClass('prettyprint  linenums');
-      prettyPrint();
-    })
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "B-Tree dynamtic procedures/remove&insert&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
     }
-    anchors.add(res.join(", "))
-  </script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      getSearchFile(path);
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <script>
-    $("#post img:not(.no-zoom img, img[no-zoom])").each(
-      function () {
-        var element = document.createElement("a");
-        $(element).attr("data-fancybox", "images");
-        $(element).attr("href", $(this).attr("src"));
-        $(this).wrap(element);
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
       }
-    );
-  </script>
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本框架"><span class="nav-number">1.</span> <span class="nav-text">基本框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下溢问题"><span class="nav-number">2.</span> <span class="nav-text">下溢问题</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Chalky Doge</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ChalkDoge" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ChalkDoge" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/chalkdog12233@gmail.com" title="E-Mail → chalkdog12233@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/bun233" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;bun233" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chalky Doge</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 
   
-  
-    <script type="text/javascript">
-      //定义获取词语下标
-      var a_idx = 0;
-      jQuery(document).ready(function ($) {
-        //点击body时触发事件
-        $("body").click(function (e) {
-          //需要显示的词语
-          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
-          //设置词语给span标签
-          var $i = $("<span/>").text(a[a_idx]);
-          //下标等于原来下标+1  余 词语总数
-          a_idx = (a_idx + 1) % a.length;
-          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
-          //获取x和y的指针坐标
-          var x = e.pageX, y = e.pageY;
-          //在鼠标的指针的位置给$i定义的span标签添加css样式
-          $i.css({
-            "z-index": 999,
-            "top": y - 20,
-            "left": x,
-            "position": "absolute",
-            "font-weight": "bold",
-            "color": rand_color()
-          });
-          // 随机颜色
-          function rand_color() {
-            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-          }
-          //在body添加这个标签
-          $("body").append($i);
-          //animate() 方法执行 CSS 属性集的自定义动画。
-          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
-          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
-          $i.animate({
-            //将原来的位置向上移动180
-            "top": y - 180,
-            "opacity": 0
-            //1500动画的速度
-          }, 1500, function () {
-            //时间到了自动删除
-            $i.remove();
-          });
-        });
-      })
-      ;
-    </script>
+
   
 
-
-
-
-
-
-
+  
 
 </body>
 </html>
